@@ -76,6 +76,8 @@ export default function Index() {
     },
   ];
 
+  const categoryTags = ["Músculo","Energía","Recovery","Salud","Cardio","Fuerza"];
+
   const featuredProducts = [
     {
       id: 1,
