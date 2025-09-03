@@ -428,79 +428,100 @@ export default function Index() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {featuredProducts.map((product) => (
-              <Card
+              <div
                 key={product.id}
-                className="group overflow-hidden border border-white/10 bg-white/5 backdrop-blur-md hover:border-primary/40 transition-colors shadow-lg hover:shadow-2xl"
+                className="group relative rounded-xl p-[1px] bg-gradient-to-br from-primary/40 via-accent/40 to-transparent hover:from-primary hover:via-accent hover:to-primary/30 transition-colors"
               >
-                <CardContent className="p-0">
-                  <div className="relative">
-                    <div className="aspect-square overflow-hidden">
-                      <img
-                        src={product.image}
-                        alt={product.name}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                      />
-                    </div>
-                    {product.badge && (
-                      <Badge
-                        className={`absolute top-3 left-3 ${
-                          product.badge === "Bestseller"
-                            ? "bg-orange"
-                            : product.badge === "Oferta"
-                            ? "bg-red-500"
-                            : "bg-blue"
-                        }`}
-                      >
-                        {product.badge}
-                      </Badge>
-                    )}
-                    <Button
-                      size="icon"
-                      variant="secondary"
-                      className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity"
-                    >
-                      <Heart className="w-4 h-4" />
-                    </Button>
-                  </div>
-
-                  <div className="p-6 space-y-4">
-                    <div>
-                      <p className="text-sm text-white/80">{product.brand}</p>
-                      <h3 className="font-semibold text-lg leading-tight text-white">
-                        {product.name}
-                      </h3>
-                    </div>
-
-                    <div className="flex items-center space-x-2">
-                      <div className="flex items-center">
-                        <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                        <span className="text-sm font-medium ml-1 text-white">
-                          {product.rating}
-                        </span>
+                <Card className="rounded-xl overflow-hidden border border-white/10 bg-white/5 backdrop-blur-md transform transition-all hover:-translate-y-1 hover:shadow-2xl">
+                  <CardContent className="p-0">
+                    <div className="relative">
+                      <div className="aspect-square overflow-hidden">
+                        <img
+                          src={product.image}
+                          alt={product.name}
+                          className="w-full h-full object-cover duration-300 transform group-hover:scale-105"
+                        />
                       </div>
-                      <span className="text-sm text-white/70">({product.reviews})</span>
-                    </div>
-
-                    <div className="space-y-3">
-                      <div className="flex items-center space-x-2">
-                        <span className="text-2xl font-bold text-primary">
-                          S/{product.price}
-                        </span>
-                        {product.originalPrice && (
-                          <span className="text-lg text-white/60 line-through">
-                            S/{product.originalPrice}
-                          </span>
+                      <div className="absolute top-3 left-3 flex gap-2 flex-wrap">
+                        {product.badge && (
+                          <Badge
+                            className={`${
+                              product.badge === "Bestseller"
+                                ? "bg-orange"
+                                : product.badge === "Oferta"
+                                ? "bg-red-500"
+                                : "bg-blue"
+                            }`}
+                          >
+                            {product.badge}
+                          </Badge>
                         )}
+                        {(() => {
+                          const pct = product.originalPrice
+                            ? Math.round((1 - product.price / (product.originalPrice || 1)) * 100)
+                            : null;
+                          return pct && pct > 0 ? (
+                            <span className="text-xs font-bold px-2 py-1 rounded-md bg-green-600/20 text-green-300 border border-green-400/30">
+                              -{pct}%
+                            </span>
+                          ) : null;
+                        })()}
                       </div>
-
-                      <Button className="w-full group-hover:bg-primary group-hover:text-white transition-all">
-                        <ShoppingCart className="w-4 h-4 mr-2" />
-                        Agregar al Carrito
+                      <Button
+                        size="icon"
+                        variant="secondary"
+                        className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity"
+                        aria-label="Añadir a favoritos"
+                      >
+                        <Heart className="w-4 h-4" />
                       </Button>
                     </div>
-                  </div>
-                </CardContent>
-              </Card>
+
+                    <div className="p-6 space-y-4">
+                      <div>
+                        <p className="text-sm text-white/80">{product.brand}</p>
+                        <h3 className="font-semibold text-lg leading-tight text-white">
+                          {product.name}
+                        </h3>
+                      </div>
+
+                      <div className="flex items-center space-x-2">
+                        <div className="flex items-center">
+                          <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                          <span className="text-sm font-medium ml-1 text-white">
+                            {product.rating}
+                          </span>
+                        </div>
+                        <span className="text-sm text-white/70">({product.reviews})</span>
+                      </div>
+
+                      <div className="space-y-3">
+                        <div className="flex flex-wrap items-center gap-2">
+                          <span className="text-2xl font-bold text-primary">S/{product.price}</span>
+                          {product.originalPrice && (
+                            <span className="text-lg text-white/60 line-through">S/{product.originalPrice}</span>
+                          )}
+                          {product.price >= 150 && (
+                            <span className="ml-auto text-xs px-2 py-1 rounded-full bg-emerald-500/15 text-emerald-300 border border-emerald-400/30">
+                              Envío gratis
+                            </span>
+                          )}
+                        </div>
+
+                        <div className="grid grid-cols-2 gap-3">
+                          <Button variant="outline" className="border-white/30 text-white hover:bg-white/10">
+                            Detalles
+                          </Button>
+                          <Button className="bg-gradient-to-r from-primary to-accent text-white border-0 hover:opacity-90">
+                            <ShoppingCart className="w-4 h-4 mr-2" />
+                            Agregar
+                          </Button>
+                        </div>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
             ))}
           </div>
 
