@@ -409,30 +409,20 @@ export default function Index() {
       </section>
 
       {/* Featured Products */}
-      <section className="relative py-20 overflow-hidden">
-        <div className="absolute inset-0">
-          <img
-            src="https://images.pexels.com/photos/6296123/pexels-photo-6296123.jpeg"
-            alt="Fitness equipment background"
-            className="w-full h-full object-cover opacity-10"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-foreground/90 via-foreground/85 to-foreground/90"></div>
-        </div>
+      <section className="py-20 bg-white">
         <div className="container relative z-10">
           <div className="text-center space-y-4 mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold text-white">Productos Destacados</h2>
-            <p className="text-white/80 text-lg max-w-2xl mx-auto">
+            <h2 className="text-3xl lg:text-4xl font-bold">Productos Destacados</h2>
+            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
               Los más vendidos y mejor valorados por nuestros clientes
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10 md:gap-12">
             {featuredProducts.map((product) => (
-              <div
+              <Card
                 key={product.id}
-                className="group relative rounded-xl p-[1px] bg-gradient-to-br from-primary/40 via-accent/40 to-transparent hover:from-primary hover:via-accent hover:to-primary/30 transition-colors"
-              >
-                <Card className="rounded-xl overflow-hidden border border-white/10 bg-white/5 backdrop-blur-md transform transition-all hover:-translate-y-1 hover:shadow-2xl">
+                className="rounded-xl overflow-hidden bg-white shadow-md hover:shadow-lg transform transition-transform hover:-translate-y-1">
                   <CardContent className="p-0">
                     <div className="relative">
                       <div className="aspect-square overflow-hidden">
@@ -461,7 +451,7 @@ export default function Index() {
                             ? Math.round((1 - product.price / (product.originalPrice || 1)) * 100)
                             : null;
                           return pct && pct > 0 ? (
-                            <span className="text-xs font-bold px-2 py-1 rounded-md bg-green-600/20 text-green-300 border border-green-400/30">
+                            <span className="text-xs font-bold px-2 py-1 rounded-md bg-green-600/10 text-green-700 border border-green-600/20">
                               -{pct}%
                             </span>
                           ) : null;
@@ -479,8 +469,8 @@ export default function Index() {
 
                     <div className="p-6 space-y-4">
                       <div>
-                        <p className="text-sm text-white/80">{product.brand}</p>
-                        <h3 className="font-semibold text-lg leading-tight text-white">
+                        <p className="text-sm text-muted-foreground">{product.brand}</p>
+                        <h3 className="font-semibold text-lg leading-tight">
                           {product.name}
                         </h3>
                       </div>
@@ -488,7 +478,7 @@ export default function Index() {
                       <div className="flex items-center space-x-2">
                         <div className="flex items-center">
                           <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                          <span className="text-sm font-medium ml-1 text-white">
+                          <span className="text-sm font-medium ml-1">
                             {product.rating}
                           </span>
                         </div>
@@ -499,17 +489,17 @@ export default function Index() {
                         <div className="flex flex-wrap items-center gap-2">
                           <span className="text-2xl font-bold text-primary">S/{product.price}</span>
                           {product.originalPrice && (
-                            <span className="text-lg text-white/60 line-through">S/{product.originalPrice}</span>
+                            <span className="text-lg text-muted-foreground line-through">S/{product.originalPrice}</span>
                           )}
                           {product.price >= 150 && (
-                            <span className="ml-auto text-xs px-2 py-1 rounded-full bg-emerald-500/15 text-emerald-300 border border-emerald-400/30">
+                            <span className="ml-auto text-xs px-2 py-1 rounded-full bg-emerald-500/10 text-emerald-700 border border-emerald-600/20">
                               Envío gratis
                             </span>
                           )}
                         </div>
 
                         <div className="grid grid-cols-2 gap-3">
-                          <Button variant="outline" className="border-white/30 text-white hover:bg-white/10">
+                          <Button variant="outline" className="text-foreground">
                             Detalles
                           </Button>
                           <Button className="bg-gradient-to-r from-primary to-accent text-white border-0 hover:opacity-90">
@@ -520,8 +510,7 @@ export default function Index() {
                       </div>
                     </div>
                   </CardContent>
-                </Card>
-              </div>
+              </Card>
             ))}
           </div>
 
