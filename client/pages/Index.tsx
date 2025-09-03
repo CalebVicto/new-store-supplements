@@ -366,33 +366,43 @@ export default function Index() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {categories.map((category, index) => (
-              <Card
+              <div
                 key={index}
-                className="group overflow-hidden border-0 shadow-xl bg-white/5 backdrop-blur-md hover:shadow-2xl transition-all"
+                className="group relative rounded-xl p-[1px] bg-gradient-to-br from-primary/40 via-accent/40 to-transparent hover:from-primary hover:via-accent hover:to-primary/30 transition-colors"
               >
-                <CardContent className="p-0">
-                  <div className="relative">
-                    <div className="aspect-square overflow-hidden">
-                      <img
-                        src={category.image}
-                        alt={category.name}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                      />
+                <Card className="rounded-xl overflow-hidden border border-white/10 bg-white/5 backdrop-blur-md transform transition-all hover:-translate-y-1 hover:shadow-2xl">
+                  <CardContent className="p-0">
+                    <div className="relative">
+                      <div className="aspect-square overflow-hidden">
+                        <img
+                          src={category.image}
+                          alt={category.name}
+                          className="w-full h-full object-cover duration-300 transform group-hover:scale-105"
+                        />
+                      </div>
+                      {(() => {
+                        const overlay = ["from-primary/60", "from-blue/60", "from-orange/60"][index % 3];
+                        return (
+                          <div className={`absolute inset-0 bg-gradient-to-t ${overlay} via-black/40 to-transparent`}></div>
+                        );
+                      })()}
+                      <span className="absolute top-3 right-3 text-xs font-semibold px-3 py-1 rounded-full bg-white/15 text-white border border-white/20 backdrop-blur">
+                        {categoryTags[index % categoryTags.length]}
+                      </span>
                     </div>
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent"></div>
-                  </div>
-                  <div className="p-6 text-center space-y-2">
-                    <h3 className="text-xl font-semibold text-white group-hover:text-primary transition-colors">
-                      {category.name}
-                    </h3>
-                    <p className="text-white/80 text-sm">{category.description}</p>
-                    <Button variant="ghost" className="group-hover:bg-primary group-hover:text-white transition-all">
-                      Ver Productos
-                      <ArrowRight className="ml-2 w-4 h-4" />
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
+                    <div className="p-6 space-y-3 text-center">
+                      <h3 className="text-xl font-semibold text-white group-hover:text-primary transition-colors">
+                        {category.name}
+                      </h3>
+                      <p className="text-white/80 text-sm">{category.description}</p>
+                      <Button variant="outline" className="border-white/30 text-white hover:bg-white/10">
+                        Ver Productos
+                        <ArrowRight className="ml-2 w-4 h-4" />
+                      </Button>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
             ))}
           </div>
         </div>
