@@ -350,11 +350,11 @@ export default function Index() {
       <section className="relative py-20 overflow-hidden">
         <div className="absolute inset-0">
           <img
-            src="https://images.pexels.com/photos/2294403/pexels-photo-2294403.jpeg"
-            alt="Pattern background"
-            className="w-full h-full object-cover opacity-10"
+            src="https://images.pexels.com/photos/2261482/pexels-photo-2261482.jpeg"
+            alt="People training background"
+            className="w-full h-full object-cover opacity-20"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-foreground/90 via-foreground/80 to-foreground/90"></div>
+          <div className="absolute inset-0 bg-gradient-to-br from-primary/30 via-accent/30 to-black/70"></div>
         </div>
         <div className="container relative z-10">
           <div className="text-center space-y-4 mb-16">
