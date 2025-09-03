@@ -158,7 +158,7 @@ export default function Index() {
         <div className="container">
           <div
             className={`flex items-center justify-between transition-all duration-300 ${
-              isScrolled ? "h-14 lg:h-16" : "h-16 lg:h-18"
+              isScrolled ? "h-16 lg:h-20" : "h-24 lg:h-28"
             }`}
           >
             {/* Logo */}
@@ -195,7 +195,7 @@ export default function Index() {
               <a href="/productos" className="text-white/80 hover:text-white">
                 Productos
               </a>
-              <a href="/categorias" className="text-white/80 hover:text-white">
+              <a href="/categorias" className="text-white/90 hover:text-white px-3 py-1.5 rounded-md bg-white/10 hover:bg-white/20 border border-white/20">
                 Categorías
               </a>
               <a href="/marcas" className="text-white/80 hover:text-white">
@@ -395,7 +395,7 @@ export default function Index() {
                         {category.name}
                       </h3>
                       <p className="text-white/80 text-sm">{category.description}</p>
-                      <Button variant="outline" className="border-white/30 text-white hover:bg-white/10">
+                      <Button className="w-full bg-gradient-to-r from-primary to-accent text-white border-0 hover:opacity-90">
                         Ver Productos
                         <ArrowRight className="ml-2 w-4 h-4" />
                       </Button>
