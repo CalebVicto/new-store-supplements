@@ -412,8 +412,8 @@ export default function Index() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {categories.map((category, index) => (
               <Card key={index} className="overflow-hidden bg-white border border-border shadow-sm hover:shadow-md transition-all rounded-xl h-56 md:h-60 lg:h-64">
-                <CardContent className="p-0">
-                  <div className="grid grid-cols-1 md:grid-cols-[220px_1fr]">
+                <CardContent className="p-0 h-full">
+                  <div className="grid grid-cols-1 md:grid-cols-[220px_1fr] h-full">
                     <div className="h-44 md:h-full">
                       <img src={category.image} alt={category.name} className="w-full h-full object-cover" />
                     </div>
