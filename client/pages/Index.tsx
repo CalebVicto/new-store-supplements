@@ -690,6 +690,7 @@ export default function Index() {
       {/* Preguntas Frecuentes (full section) */}
       <section className="relative py-20 overflow-hidden">
         <div className="absolute inset-0">
+          <img src="https://images.pexels.com/photos/1954524/pexels-photo-1954524.jpeg" alt="FAQ background" className="w-full h-full object-cover opacity-20" />
           <div className="absolute inset-0 bg-gradient-to-t from-foreground/90 via-foreground/85 to-foreground/90" />
         </div>
         <div className="container relative z-10">
