@@ -374,6 +374,10 @@ export default function Index() {
                 Buscar
               </Button>
             </div>
+            <div className="flex items-center justify-center gap-4">
+              <Button size="lg" className="bg-gradient-to-r from-primary to-accent text-white px-7 h-12">Ver Proteínas</Button>
+              <Button size="lg" variant="outline" className="text-white border-white/30 hover:bg-white/10 px-7 h-12">Ver Ofertas</Button>
+            </div>
             <div className="text-white/80 text-sm">
               Explora por objetivos:
             </div>
@@ -412,45 +416,32 @@ export default function Index() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="space-y-6">
             {categories.map((category, index) => (
-              <div
-                key={index}
-                className="group relative rounded-xl p-[1px] bg-gradient-to-br from-primary/40 via-accent/40 to-transparent hover:from-primary hover:via-accent hover:to-primary/30 transition-colors"
-              >
-                <Card className="rounded-xl overflow-hidden border border-white/10 bg-white/5 backdrop-blur-md transform transition-all hover:-translate-y-1 hover:shadow-2xl">
-                  <CardContent className="p-0">
-                    <div className="relative">
-                      <div className="aspect-square overflow-hidden">
-                        <img
-                          src={category.image}
-                          alt={category.name}
-                          className="w-full h-full object-cover duration-300 transform group-hover:scale-105"
-                        />
-                      </div>
-                      {(() => {
-                        const overlay = ["from-primary/60", "from-blue/60", "from-orange/60"][index % 3];
-                        return (
-                          <div className={`absolute inset-0 bg-gradient-to-t ${overlay} via-black/40 to-transparent`}></div>
-                        );
-                      })()}
-                      <span className="absolute top-3 right-3 text-xs font-semibold px-3 py-1 rounded-full bg-white/15 text-white border border-white/20 backdrop-blur">
-                        {categoryTags[index % categoryTags.length]}
-                      </span>
+              <Card key={index} className="overflow-hidden bg-white/5 backdrop-blur-md border border-white/10 hover:border-primary/30 transition-all">
+                <CardContent className="p-0">
+                  <div className="grid grid-cols-1 md:grid-cols-[220px_1fr]">
+                    <div className="h-44 md:h-full">
+                      <img src={category.image} alt={category.name} className="w-full h-full object-cover" />
                     </div>
-                    <div className="p-6 space-y-3 text-center">
-                      <h3 className="text-xl font-semibold text-white group-hover:text-primary transition-colors">
-                        {category.name}
-                      </h3>
-                      <p className="text-white/80 text-sm">{category.description}</p>
-                      <Button className="w-full bg-gradient-to-r from-primary to-accent text-white border-0 hover:opacity-90">
+                    <div className="p-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                      <div>
+                        <h3 className="text-xl font-semibold text-white">{category.name}</h3>
+                        <p className="text-white/80 text-sm mt-1">{category.description}</p>
+                        <div className="mt-3 flex flex-wrap gap-2">
+                          <span className="text-xs font-semibold px-3 py-1 rounded-full bg-white/10 text-white border border-white/20 backdrop-blur">
+                            {categoryTags[index % categoryTags.length]}
+                          </span>
+                        </div>
+                      </div>
+                      <Button className="bg-gradient-to-r from-primary to-accent text-white">
                         Ver Productos
                         <ArrowRight className="ml-2 w-4 h-4" />
                       </Button>
                     </div>
-                  </CardContent>
-                </Card>
-              </div>
+                  </div>
+                </CardContent>
+              </Card>
             ))}
           </div>
         </div>
