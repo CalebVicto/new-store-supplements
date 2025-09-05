@@ -381,17 +381,17 @@ export default function Index() {
           <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/50 to-black/40"></div>
         </div>
         <div className="container relative z-10">
-          <div className="max-w-3xl mx-auto text-center space-y-8">
+          <div className="max-w-5xl mx-auto text-center space-y-8">
             <h1 className="text-3xl md:text-5xl font-extrabold text-white">
               ¿Qué buscas hoy?
             </h1>
-            <div className="relative max-w-2xl mx-auto">
-              <Search className="absolute left-5 top-1/2 -translate-y-1/2 text-white/70 w-6 h-6" />
+            <div className="relative max-w-4xl w-full mx-auto">
+              <Search className="absolute left-6 top-1/2 -translate-y-1/2 text-white/80 w-7 h-7" />
               <Input
                 placeholder="Proteínas, creatina, pre-entreno, vitaminas..."
-                className="pl-14 h-16 text-xl bg-white/10 border-white/20 text-white placeholder:text-white/70"
+                className="pl-16 pr-36 h-16 md:h-20 text-xl md:text-2xl rounded-full bg-white/15 border-white/30 text-white placeholder:text-white/70 focus-visible:ring-2 focus-visible:ring-primary/60"
               />
-              <Button className="absolute right-3 top-1/2 -translate-y-1/2 h-12 px-7 text-base">
+              <Button className="absolute right-3 top-1/2 -translate-y-1/2 h-12 md:h-14 px-6 md:px-8 text-base md:text-lg rounded-full">
                 Buscar
               </Button>
             </div>
@@ -706,7 +706,7 @@ export default function Index() {
               </AccordionContent>
             </AccordionItem>
             <AccordionItem value="item-4">
-              <AccordionTrigger>¿Qué métodos de pago aceptan?</AccordionTrigger>
+              <AccordionTrigger>¿Qué m��todos de pago aceptan?</AccordionTrigger>
               <AccordionContent>
                 Aceptamos tarjetas de crédito/débito, transferencias y Yape/Plin en Perú.
               </AccordionContent>
