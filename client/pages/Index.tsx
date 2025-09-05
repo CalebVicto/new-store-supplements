@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import {
   ShoppingCart,
   Search,
@@ -20,12 +21,14 @@ import {
   Instagram,
   Facebook,
   MessageCircle,
+  Timer,
 } from "lucide-react";
 import { useState, useEffect } from "react";
 
 export default function Index() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [countdown, setCountdown] = useState<string>("");
 
   useEffect(() => {
     const handleScroll = () => {
@@ -35,6 +38,24 @@ export default function Index() {
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const target = new Date(Date.now() + 1000 * 60 * 60 * 48).getTime();
+    const id = setInterval(() => {
+      const diff = target - Date.now();
+      if (diff <= 0) {
+        setCountdown("00:00:00");
+        clearInterval(id);
+        return;
+      }
+      const h = Math.floor(diff / (1000 * 60 * 60));
+      const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const s = Math.floor((diff % (1000 * 60)) / 1000);
+      const pad = (n: number) => String(n).padStart(2, "0");
+      setCountdown(`${pad(h)}:${pad(m)}:${pad(s)}`);
+    }, 1000);
+    return () => clearInterval(id);
   }, []);
 
   const categories = [
@@ -619,6 +640,78 @@ export default function Index() {
               </Card>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Oferta de la Semana (full section) */}
+      <section className="relative py-20 overflow-hidden">
+        <div className="absolute inset-0">
+          <img src="https://images.pexels.com/photos/841130/pexels-photo-841130.jpeg" alt="Offer background" className="w-full h-full object-cover opacity-20" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/60 to-black/70" />
+        </div>
+        <div className="container relative z-10">
+          <div className="grid md:grid-cols-2 gap-10 items-center">
+            <div className="order-2 md:order-1 space-y-5">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-600/20 text-red-300 border border-red-500/30">
+                <Timer className="w-4 h-4" />
+                <span className="text-sm font-semibold">Termina en {countdown}</span>
+              </div>
+              <h3 className="text-3xl md:text-4xl font-extrabold text-white">Mega Oferta: Pre-Entreno Extremo</h3>
+              <p className="text-white/80">Potencia tu energía y enfoque. Solo por tiempo limitado con 20% de descuento.</p>
+              <div className="flex items-center gap-4">
+                <span className="text-3xl font-bold text-primary">S/129.9</span>
+                <span className="text-xl text-white/60 line-through">S/149.9</span>
+                <span className="ml-2 text-xs font-bold px-2 py-1 rounded-md bg-green-600/10 text-green-700 border border-green-600/20">-13%</span>
+              </div>
+              <div className="flex gap-3">
+                <Button className="bg-gradient-to-r from-primary to-accent text-white">Comprar ahora</Button>
+                <Button variant="outline" className="text-white border-white/30 hover:bg-white/10">Ver detalles</Button>
+              </div>
+            </div>
+            <div className="order-1 md:order-2">
+              <Card className="overflow-hidden bg-white shadow-xl">
+                <CardContent className="p-0">
+                  <img src="https://images.pexels.com/photos/13779103/pexels-photo-13779103.jpeg" alt="Pre-Entreno Extremo" className="w-full h-[360px] object-cover" />
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Preguntas Frecuentes (full section) */}
+      <section className="py-20 bg-secondary/30">
+        <div className="container">
+          <div className="mb-8">
+            <h3 className="text-3xl font-bold">Preguntas Frecuentes</h3>
+            <p className="text-muted-foreground">Todo lo que necesitas saber antes de comprar</p>
+          </div>
+          <Accordion type="single" collapsible className="w-full">
+            <AccordionItem value="item-1">
+              <AccordionTrigger>¿Cuánto demora el envío?</AccordionTrigger>
+              <AccordionContent>
+                En Lima de 24 a 48 horas y a provincias entre 2 a 5 días hábiles. Envío gratis desde S/150.
+              </AccordionContent>
+            </AccordionItem>
+            <AccordionItem value="item-2">
+              <AccordionTrigger>¿Los productos son originales?</AccordionTrigger>
+              <AccordionContent>
+                Sí, trabajamos con marcas certificadas y distribuidores oficiales. Garantía de autenticidad.
+              </AccordionContent>
+            </AccordionItem>
+            <AccordionItem value="item-3">
+              <AccordionTrigger>¿Puedo cambiar o devolver un producto?</AccordionTrigger>
+              <AccordionContent>
+                Sí, dentro de los 7 días de recibido si el producto está sellado y en perfecto estado. Consulta nuestra política de devoluciones.
+              </AccordionContent>
+            </AccordionItem>
+            <AccordionItem value="item-4">
+              <AccordionTrigger>¿Qué métodos de pago aceptan?</AccordionTrigger>
+              <AccordionContent>
+                Aceptamos tarjetas de crédito/débito, transferencias y Yape/Plin en Perú.
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
         </div>
       </section>
 
