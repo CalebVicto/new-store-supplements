@@ -462,11 +462,14 @@ export default function Index() {
       </section>
 
       {/* Featured Products */}
-      <section className="py-20 bg-white">
+      <section className="relative py-20 overflow-hidden">
+        <div className="absolute inset-0">
+          <div className="absolute inset-0 bg-gradient-to-t from-foreground/90 via-foreground/85 to-foreground/90" />
+        </div>
         <div className="container relative z-10">
           <div className="text-center space-y-4 mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold">Productos Destacados</h2>
-            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+            <h2 className="text-3xl lg:text-4xl font-bold text-white">Productos Destacados</h2>
+            <p className="text-white/80 text-lg max-w-2xl mx-auto">
               Los más vendidos y mejor valorados por nuestros clientes
             </p>
           </div>
@@ -493,7 +496,7 @@ export default function Index() {
                                 ? "bg-orange"
                                 : product.badge === "Oferta"
                                 ? "bg-red-500"
-                                : "bg-blue"
+                                : "bg-orange"
                             }`}
                           >
                             {product.badge}
@@ -536,7 +539,7 @@ export default function Index() {
                             {product.rating}
                           </span>
                         </div>
-                        <span className="text-sm text-white/70">({product.reviews})</span>
+                        <span className="text-sm text-muted-foreground">({product.reviews})</span>
                       </div>
 
                       <div className="space-y-3">
@@ -609,12 +612,15 @@ export default function Index() {
       </section>
 
       {/* Productos del día */}
-      <section className="py-16 bg-secondary/30">
-        <div className="container">
+      <section className="relative py-16 overflow-hidden">
+        <div className="absolute inset-0">
+          <div className="absolute inset-0 bg-gradient-to-t from-foreground/90 via-foreground/85 to-foreground/90" />
+        </div>
+        <div className="container relative z-10">
           <div className="flex items-end justify-between mb-8">
             <div>
-              <h3 className="text-2xl md:text-3xl font-bold">Productos del Día</h3>
-              <p className="text-muted-foreground">Selección limitada con precios especiales</p>
+              <h3 className="text-2xl md:text-3xl font-bold text-white">Productos del Día</h3>
+              <p className="text-white/80">Selección limitada con precios especiales</p>
             </div>
             <Button variant="ghost">Ver más</Button>
           </div>
@@ -680,13 +686,16 @@ export default function Index() {
       </section>
 
       {/* Preguntas Frecuentes (full section) */}
-      <section className="py-20 bg-secondary/30">
-        <div className="container">
+      <section className="relative py-20 overflow-hidden">
+        <div className="absolute inset-0">
+          <div className="absolute inset-0 bg-gradient-to-t from-foreground/90 via-foreground/85 to-foreground/90" />
+        </div>
+        <div className="container relative z-10">
           <div className="mb-8">
-            <h3 className="text-3xl font-bold">Preguntas Frecuentes</h3>
-            <p className="text-muted-foreground">Todo lo que necesitas saber antes de comprar</p>
+            <h3 className="text-3xl font-bold text-white">Preguntas Frecuentes</h3>
+            <p className="text-white/80">Todo lo que necesitas saber antes de comprar</p>
           </div>
-          <Accordion type="single" collapsible className="w-full">
+          <Accordion type="single" collapsible className="w-full text-white">
             <AccordionItem value="item-1">
               <AccordionTrigger>¿Cuánto demora el envío?</AccordionTrigger>
               <AccordionContent>
