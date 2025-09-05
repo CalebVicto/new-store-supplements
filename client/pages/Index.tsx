@@ -301,7 +301,7 @@ export default function Index() {
       </header>
 
       {/* Quick Search + Category Hero (just after header) */}
-      <section className="relative py-14 md:py-18 overflow-hidden">
+      <section className="relative min-h-screen flex items-center overflow-hidden">
         <div className="absolute inset-0">
           <img
             src="https://images.pexels.com/photos/1552252/pexels-photo-1552252.jpeg"
