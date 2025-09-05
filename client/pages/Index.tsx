@@ -411,7 +411,7 @@ export default function Index() {
         <div className="container max-w-none relative z-10">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {categories.map((category, index) => (
-              <Card key={index} className="overflow-hidden bg-white border border-border shadow-sm hover:shadow-md transition-all rounded-xl">
+              <Card key={index} className="overflow-hidden bg-white border border-border shadow-sm hover:shadow-md transition-all rounded-xl h-56 md:h-60 lg:h-64">
                 <CardContent className="p-0">
                   <div className="grid grid-cols-1 md:grid-cols-[220px_1fr]">
                     <div className="h-44 md:h-full">
