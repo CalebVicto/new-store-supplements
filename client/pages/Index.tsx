@@ -411,7 +411,7 @@ export default function Index() {
         <div className="container max-w-none relative z-10">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {categories.map((category, index) => (
-              <Card key={index} className="overflow-hidden bg-white/5 backdrop-blur-md border border-white/10 hover:border-primary/30 transition-all">
+              <Card key={index} className="overflow-hidden bg-white border border-border shadow-sm hover:shadow-md transition-all rounded-xl">
                 <CardContent className="p-0">
                   <div className="grid grid-cols-1 md:grid-cols-[220px_1fr]">
                     <div className="h-44 md:h-full">
@@ -419,10 +419,10 @@ export default function Index() {
                     </div>
                     <div className="p-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                       <div>
-                        <h3 className="text-xl font-semibold text-white">{category.name}</h3>
-                        <p className="text-white/80 text-sm mt-1">{category.description}</p>
+                        <h3 className="text-xl font-semibold">{category.name}</h3>
+                        <p className="text-muted-foreground text-sm mt-1">{category.description}</p>
                         <div className="mt-3 flex flex-wrap gap-2">
-                          <span className="text-xs font-semibold px-3 py-1 rounded-full bg-white/10 text-white border border-white/20 backdrop-blur">
+                          <span className="text-xs font-semibold px-3 py-1 rounded-full bg-secondary/30 text-foreground border border-border/50">
                             {categoryTags[index % categoryTags.length]}
                           </span>
                         </div>
