@@ -572,6 +572,72 @@ export default function Index() {
         </div>
       </section>
 
+      {/* Promo: Ofertas strip */}
+      <section className="relative h-40 md:h-48 overflow-hidden">
+        <div className="absolute inset-0">
+          <img src="https://images.pexels.com/photos/221210/pexels-photo-221210.jpeg" alt="Gym offers background" className="w-full h-full object-cover" />
+          <div className="absolute inset-0 bg-black/60"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-primary/40 to-accent/40"></div>
+        </div>
+        <div className="container relative z-10 h-full flex items-center justify-between gap-6">
+          <div>
+            <h3 className="text-2xl md:text-3xl font-extrabold text-white">Ofertas de la Semana</h3>
+            <p className="text-white/80">Hasta 30% en proteínas y pre-entrenos</p>
+          </div>
+          <Button className="bg-white text-foreground hover:bg-white/90">Ver Ofertas</Button>
+        </div>
+      </section>
+
+      {/* Promo: FAQ strip */}
+      <section className="relative h-36 md:h-44 overflow-hidden">
+        <div className="absolute inset-0">
+          <img src="https://images.pexels.com/photos/1552106/pexels-photo-1552106.jpeg" alt="FAQ background" className="w-full h-full object-cover" />
+          <div className="absolute inset-0 bg-black/70"></div>
+        </div>
+        <div className="container relative z-10 h-full flex items-center justify-between">
+          <div>
+            <h3 className="text-xl md:text-2xl font-bold text-white">¿Preguntas Frecuentes?</h3>
+            <p className="text-white/80">Todo sobre envíos, devoluciones y métodos de pago</p>
+          </div>
+          <Button variant="outline" className="text-white border-white/40 hover:bg-white/10">Ir a Ayuda</Button>
+        </div>
+      </section>
+
+      {/* Productos del día */}
+      <section className="py-16 bg-secondary/30">
+        <div className="container">
+          <div className="flex items-end justify-between mb-8">
+            <div>
+              <h3 className="text-2xl md:text-3xl font-bold">Productos del Día</h3>
+              <p className="text-muted-foreground">Selección limitada con precios especiales</p>
+            </div>
+            <Button variant="ghost">Ver más</Button>
+          </div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {featuredProducts.slice(0, 3).map((p) => (
+              <Card key={`day-${p.id}`} className="overflow-hidden bg-white shadow">
+                <CardContent className="p-0">
+                  <div className="relative">
+                    <img src={p.image} alt={p.name} className="w-full h-56 object-cover" />
+                    {p.originalPrice && (
+                      <div className="absolute top-3 right-3 w-3.5 h-3.5 rounded-full bg-red-600 ring-2 ring-white" />
+                    )}
+                  </div>
+                  <div className="p-5 space-y-2">
+                    <h4 className="font-semibold">{p.name}</h4>
+                    <div className="flex items-center gap-2">
+                      <span className="text-primary font-bold">S/{p.price}</span>
+                      {p.originalPrice && <span className="text-muted-foreground line-through">S/{p.originalPrice}</span>}
+                    </div>
+                    <Button size="sm" className="w-full">Agregar</Button>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Newsletter */}
       <section className="relative py-20 overflow-hidden">
         <div className="absolute inset-0">
