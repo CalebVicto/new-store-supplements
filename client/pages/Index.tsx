@@ -408,15 +408,8 @@ export default function Index() {
           />
           <div className="absolute inset-0 bg-gradient-to-br from-primary/30 via-accent/30 to-black/70"></div>
         </div>
-        <div className="container relative z-10">
-          <div className="text-center space-y-4 mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold text-white">Explora por Categorías</h2>
-            <p className="text-white/80 text-lg max-w-2xl mx-auto">
-              Imágenes reales de entrenamiento para inspirar tu objetivo
-            </p>
-          </div>
-
-          <div className="space-y-6">
+        <div className="container max-w-none relative z-10">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {categories.map((category, index) => (
               <Card key={index} className="overflow-hidden bg-white/5 backdrop-blur-md border border-white/10 hover:border-primary/30 transition-all">
                 <CardContent className="p-0">
