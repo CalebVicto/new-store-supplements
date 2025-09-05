@@ -3,6 +3,12 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import {
   ShoppingCart,
   Search,
   Menu,
@@ -20,12 +26,14 @@ import {
   Instagram,
   Facebook,
   MessageCircle,
+  Timer,
 } from "lucide-react";
 import { useState, useEffect } from "react";
 
 export default function Index() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [countdown, setCountdown] = useState<string>("");
 
   useEffect(() => {
     const handleScroll = () => {
@@ -37,43 +45,69 @@ export default function Index() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    const target = new Date(Date.now() + 1000 * 60 * 60 * 48).getTime();
+    const id = setInterval(() => {
+      const diff = target - Date.now();
+      if (diff <= 0) {
+        setCountdown("00:00:00");
+        clearInterval(id);
+        return;
+      }
+      const h = Math.floor(diff / (1000 * 60 * 60));
+      const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const s = Math.floor((diff % (1000 * 60)) / 1000);
+      const pad = (n: number) => String(n).padStart(2, "0");
+      setCountdown(`${pad(h)}:${pad(m)}:${pad(s)}`);
+    }, 1000);
+    return () => clearInterval(id);
+  }, []);
+
   const categories = [
     {
       name: "Proteínas",
       image:
-        "https://images.pexels.com/photos/13779116/pexels-photo-13779116.jpeg",
-      description: "Whey, Caseína, Vegetal",
+        "https://images.pexels.com/photos/1552104/pexels-photo-1552104.jpeg",
+      description: "Recuperación y crecimiento muscular",
     },
     {
       name: "Pre-Entreno",
-      image:
-        "https://images.pexels.com/photos/13779103/pexels-photo-13779103.jpeg",
-      description: "Energía y Rendimiento",
+      image: "https://images.pexels.com/photos/841130/pexels-photo-841130.jpeg",
+      description: "Energía y enfoque para rendir al máximo",
     },
     {
       name: "Aminoácidos",
       image:
-        "https://images.pexels.com/photos/6475117/pexels-photo-6475117.jpeg",
-      description: "BCAA, Glutamina, Creatina",
+        "https://images.pexels.com/photos/3253501/pexels-photo-3253501.jpeg",
+      description: "Resistencia y recuperación",
     },
     {
       name: "Vitaminas",
       image:
-        "https://images.pexels.com/photos/13787562/pexels-photo-13787562.jpeg",
-      description: "Multivitamínicos y Minerales",
+        "https://images.pexels.com/photos/1954524/pexels-photo-1954524.jpeg",
+      description: "Salud integral y bienestar",
     },
     {
       name: "Pérdida de Peso",
       image:
-        "https://images.pexels.com/photos/13779110/pexels-photo-13779110.jpeg",
-      description: "Quemadores y Termogénicos",
+        "https://images.pexels.com/photos/3764011/pexels-photo-3764011.jpeg",
+      description: "Quema de grasa y metabolismo activo",
     },
     {
       name: "Ganancia Muscular",
       image:
-        "https://images.pexels.com/photos/6475116/pexels-photo-6475116.jpeg",
-      description: "Mass Gainers y Anabólicos",
+        "https://images.pexels.com/photos/3838389/pexels-photo-3838389.jpeg",
+      description: "Fuerza y volumen",
     },
+  ];
+
+  const categoryTags = [
+    "Músculo",
+    "Energía",
+    "Recovery",
+    "Salud",
+    "Cardio",
+    "Fuerza",
   ];
 
   const featuredProducts = [
@@ -106,7 +140,7 @@ export default function Index() {
       name: "Pre-Entreno Extremo",
       brand: "BeastMode",
       price: 129.9,
-      originalPrice: null,
+      originalPrice: 149.9,
       image:
         "https://images.pexels.com/photos/13779103/pexels-photo-13779103.jpeg",
       rating: 4.7,
@@ -125,25 +159,69 @@ export default function Index() {
       reviews: 167,
       badge: null,
     },
+    {
+      id: 5,
+      name: "Multivitamínico Elite",
+      brand: "VitaStrong",
+      price: 69.9,
+      originalPrice: 89.9,
+      image:
+        "https://images.pexels.com/photos/3873209/pexels-photo-3873209.jpeg",
+      rating: 4.5,
+      reviews: 98,
+      badge: "Oferta",
+    },
+    {
+      id: 6,
+      name: "Proteína Vegana",
+      brand: "GreenFuel",
+      price: 139.9,
+      originalPrice: null,
+      image:
+        "https://images.pexels.com/photos/4735903/pexels-photo-4735903.jpeg",
+      rating: 4.4,
+      reviews: 72,
+      badge: null,
+    },
+    {
+      id: 7,
+      name: "Glutamina Micronizada",
+      brand: "RecoveryX",
+      price: 84.9,
+      originalPrice: 99.9,
+      image:
+        "https://images.pexels.com/photos/13779107/pexels-photo-13779107.jpeg",
+      rating: 4.6,
+      reviews: 120,
+      badge: null,
+    },
+    {
+      id: 8,
+      name: "Omega-3 Ultra",
+      brand: "HeartPlus",
+      price: 59.9,
+      originalPrice: 79.9,
+      image:
+        "https://images.pexels.com/photos/3873147/pexels-photo-3873147.jpeg",
+      rating: 4.3,
+      reviews: 64,
+      badge: null,
+    },
   ];
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Promotional Carousel */}
+      {/* Banda de Anuncio (encabezado superior) */}
       <div className="bg-gradient-to-r from-primary via-accent to-primary text-white py-3 relative overflow-hidden">
         <div className="absolute inset-0 bg-black/10"></div>
         <div className="container relative z-10">
           <div className="flex items-center justify-center text-center">
-            <div className="flex items-center space-x-2 animate-pulse">
+            <div className="flex items-center space-x-2">
               <span className="text-yellow-300">🔥</span>
               <span className="font-bold text-sm md:text-base">
-                ¡MEGA OFERTA! 40% OFF en Proteínas Whey
+                Envío gratis desde S/150 + 20% OFF en pre-entrenos
               </span>
               <span className="text-yellow-300">🔥</span>
-            </div>
-            <div className="hidden md:flex items-center ml-6 text-sm opacity-90">
-              <Truck className="w-4 h-4 mr-2" />
-              <span>Envío gratis desde S/150</span>
             </div>
           </div>
         </div>
@@ -153,14 +231,14 @@ export default function Index() {
       <header
         className={`border-b sticky top-0 z-50 transition-all duration-300 ${
           isScrolled
-            ? "bg-white/95 backdrop-blur-lg shadow-lg border-gray-200"
-            : "bg-white/98 backdrop-blur-md shadow-md border-gray-100"
+            ? "bg-black/90 backdrop-blur-md shadow-md border-black/40"
+            : "bg-black/90 backdrop-blur-md shadow-md border-black/40"
         }`}
       >
         <div className="container">
           <div
             className={`flex items-center justify-between transition-all duration-300 ${
-              isScrolled ? "h-14 lg:h-16" : "h-16 lg:h-18"
+              isScrolled ? "h-12 lg:h-14" : "h-14 lg:h-16"
             }`}
           >
             {/* Logo */}
@@ -181,7 +259,7 @@ export default function Index() {
                 </span>
               </div>
               <span
-                className={`font-bold text-foreground truncate transition-all duration-300 ${
+                className={`font-bold text-white truncate transition-all duration-300 ${
                   isScrolled ? "text-base md:text-lg" : "text-lg md:text-xl"
                 }`}
               >
@@ -191,34 +269,22 @@ export default function Index() {
 
             {/* Desktop Navigation */}
             <nav className="hidden lg:flex items-center space-x-8">
-              <a
-                href="/"
-                className="text-foreground hover:text-primary transition-colors"
-              >
+              <a href="/" className="text-white/90 hover:text-white">
                 Inicio
               </a>
-              <a
-                href="/productos"
-                className="text-muted-foreground hover:text-primary transition-colors"
-              >
+              <a href="/productos" className="text-white/80 hover:text-white">
                 Productos
               </a>
               <a
                 href="/categorias"
-                className="text-muted-foreground hover:text-primary transition-colors"
+                className="text-white/90 hover:text-white px-3 py-1.5 rounded-md bg-white/10 hover:bg-white/20 border border-white/20"
               >
                 Categorías
               </a>
-              <a
-                href="/marcas"
-                className="text-muted-foreground hover:text-primary transition-colors"
-              >
+              <a href="/marcas" className="text-white/80 hover:text-white">
                 Marcas
               </a>
-              <a
-                href="/contacto"
-                className="text-muted-foreground hover:text-primary transition-colors"
-              >
+              <a href="/contacto" className="text-white/80 hover:text-white">
                 Contacto
               </a>
             </nav>
@@ -228,23 +294,30 @@ export default function Index() {
               {/* Desktop Search */}
               <div className="hidden lg:flex items-center">
                 <div className="relative">
-                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
+                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-white/70 w-4 h-4" />
                   <Input
                     placeholder="Buscar productos..."
-                    className="pl-10 w-64"
+                    className="pl-10 w-64 bg-white/10 border-white/20 text-white placeholder:text-white/70"
                   />
                 </div>
               </div>
 
               {/* Mobile Search Button */}
-              <Button variant="ghost" size="sm" className="lg:hidden p-2">
-                <Search className="w-5 h-5 text-muted-foreground" />
+              <Button
+                variant="ghost"
+                size="sm"
+                className="lg:hidden p-2 text-white"
+              >
+                <Search className="w-5 h-5 text-white/90" />
               </Button>
 
               {/* Cart Button */}
-              <Button size="sm" className="relative p-2 md:px-3">
+              <Button
+                size="sm"
+                className="relative p-2 md:px-3 bg-white/10 hover:bg-white/20 text-white"
+              >
                 <ShoppingCart className="w-5 h-5" />
-                <Badge className="absolute -top-1 -right-1 w-5 h-5 flex items-center justify-center p-0 text-xs bg-orange text-white border-2 border-white">
+                <Badge className="absolute -top-1 -right-1 w-5 h-5 flex items-center justify-center p-0 text-xs bg-orange text-white border-2 border-foreground">
                   3
                 </Badge>
               </Button>
@@ -253,7 +326,7 @@ export default function Index() {
               <Button
                 variant="ghost"
                 size="sm"
-                className="lg:hidden p-2 ml-1"
+                className="lg:hidden p-2 ml-1 text-white"
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
               >
                 <Menu className="w-5 h-5" />
@@ -264,63 +337,40 @@ export default function Index() {
 
         {/* Mobile Menu */}
         {isMenuOpen && (
-          <div className="lg:hidden border-t bg-white/98 backdrop-blur-md shadow-lg">
+          <div className="lg:hidden border-t bg-foreground/95 backdrop-blur-md shadow-lg border-foreground/20">
             <div className="container py-6 space-y-6">
               {/* Mobile Search */}
               <div className="relative">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-5 h-5" />
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-white/80 w-5 h-5" />
                 <Input
                   placeholder="Buscar productos..."
-                  className="pl-12 h-12 text-base border-2 focus:border-primary"
+                  className="pl-12 h-12 text-base bg-white/10 border-white/20 text-white placeholder:text-white/70"
                 />
               </div>
 
               {/* Mobile Navigation */}
               <nav className="space-y-1">
-                <a
-                  href="/"
-                  className="flex items-center justify-between text-foreground hover:text-primary hover:bg-primary/5 transition-all py-4 px-4 rounded-lg font-medium text-base"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  Inicio
-                  <ArrowRight className="w-4 h-4 opacity-50" />
-                </a>
-                <a
-                  href="/productos"
-                  className="flex items-center justify-between text-muted-foreground hover:text-primary hover:bg-primary/5 transition-all py-4 px-4 rounded-lg font-medium text-base"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  Productos
-                  <ArrowRight className="w-4 h-4 opacity-50" />
-                </a>
-                <a
-                  href="/categorias"
-                  className="flex items-center justify-between text-muted-foreground hover:text-primary hover:bg-primary/5 transition-all py-4 px-4 rounded-lg font-medium text-base"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  Categorías
-                  <ArrowRight className="w-4 h-4 opacity-50" />
-                </a>
-                <a
-                  href="/marcas"
-                  className="flex items-center justify-between text-muted-foreground hover:text-primary hover:bg-primary/5 transition-all py-4 px-4 rounded-lg font-medium text-base"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  Marcas
-                  <ArrowRight className="w-4 h-4 opacity-50" />
-                </a>
-                <a
-                  href="/contacto"
-                  className="flex items-center justify-between text-muted-foreground hover:text-primary hover:bg-primary/5 transition-all py-4 px-4 rounded-lg font-medium text-base"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  Contacto
-                  <ArrowRight className="w-4 h-4 opacity-50" />
-                </a>
+                {[
+                  { href: "/", label: "Inicio" },
+                  { href: "/productos", label: "Productos" },
+                  { href: "/categorias", label: "Categorías" },
+                  { href: "/marcas", label: "Marcas" },
+                  { href: "/contacto", label: "Contacto" },
+                ].map((item) => (
+                  <a
+                    key={item.href}
+                    href={item.href}
+                    className="flex items-center justify-between text-white/90 hover:text-white hover:bg-white/10 transition-all py-4 px-4 rounded-lg font-medium text-base"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    {item.label}
+                    <ArrowRight className="w-4 h-4 opacity-70" />
+                  </a>
+                ))}
               </nav>
 
               {/* Mobile CTA */}
-              <div className="pt-4 border-t border-gray-200">
+              <div className="pt-4 border-t border-white/10">
                 <Button
                   className="w-full h-12 text-base font-semibold"
                   onClick={() => setIsMenuOpen(false)}
@@ -331,191 +381,75 @@ export default function Index() {
               </div>
 
               {/* Quick Contact */}
-              <div className="bg-gray-50 rounded-lg p-4 text-center">
-                <p className="text-sm text-muted-foreground mb-2">
-                  ¿Necesitas ayuda?
-                </p>
-                <p className="font-semibold text-primary">+51 999 888 777</p>
+              <div className="bg-white/5 rounded-lg p-4 text-center border border-white/10">
+                <p className="text-sm text-white/80 mb-2">¿Necesitas ayuda?</p>
+                <p className="font-semibold text-white">+51 999 888 777</p>
               </div>
             </div>
           </div>
         )}
       </header>
 
-      {/* Hero Section */}
-      <section className="relative py-16 md:py-20 lg:py-32 overflow-hidden min-h-[75vh] md:min-h-[85vh]">
-        {/* Background Image */}
+      {/* Quick Search + Category Hero (just after header) */}
+      <section className="relative min-h-[70vh] flex items-center overflow-hidden">
         <div className="absolute inset-0">
           <img
             src="https://images.pexels.com/photos/1552252/pexels-photo-1552252.jpeg"
             alt="Gym background"
-            className="w-full h-full object-cover scale-110 animate-pulse"
-            style={{ animationDuration: "8s" }}
+            className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-black/70 md:bg-black/60"></div>
-          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/50 md:from-black/70 md:via-black/50 md:to-black/40"></div>
-          <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
-        </div>
-
-        <div className="container relative z-10 h-full flex items-center">
-          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center w-full">
-            <div className="space-y-6 md:space-y-8 text-center lg:text-left">
-              <div className="space-y-4 md:space-y-6">
-                <Badge className="bg-primary/20 text-primary border-primary/30 backdrop-blur-sm text-sm md:text-base px-4 py-2">
-                  ✨ Los mejores suplementos del mercado
-                </Badge>
-                <h1 className="text-3xl md:text-4xl lg:text-6xl font-bold text-white leading-tight">
-                  Potencia tu
-                  <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-                    {" "}
-                    rendimiento{" "}
-                  </span>
-                  al máximo
-                </h1>
-                <p className="text-lg md:text-xl text-gray-200 max-w-lg mx-auto lg:mx-0">
-                  Transforma tu entrenamiento con suplementos premium.
-                  Resultados garantizados y la confianza de miles de atletas.
-                </p>
-              </div>
-
-              <div className="flex justify-center lg:justify-start">
-                <Button
-                  size="lg"
-                  className="text-base md:text-lg bg-primary hover:bg-primary/90 shadow-lg px-6 md:px-8 h-12 md:h-14 w-full sm:w-auto"
-                >
-                  Explorar Productos
-                  <ArrowRight className="ml-2 w-5 h-5" />
-                </Button>
-              </div>
-
-              {/* Stats */}
-              <div className="grid grid-cols-3 gap-4 md:gap-8 pt-6 md:pt-8">
-                <div className="text-center backdrop-blur-sm bg-white/10 rounded-lg p-3 md:p-4 border border-white/20">
-                  <div className="text-xl md:text-2xl font-bold text-white">
-                    500+
-                  </div>
-                  <div className="text-xs md:text-sm text-gray-300">
-                    Productos
-                  </div>
-                </div>
-                <div className="text-center backdrop-blur-sm bg-white/10 rounded-lg p-3 md:p-4 border border-white/20">
-                  <div className="text-xl md:text-2xl font-bold text-white">
-                    10K+
-                  </div>
-                  <div className="text-xs md:text-sm text-gray-300">
-                    Clientes
-                  </div>
-                </div>
-                <div className="text-center backdrop-blur-sm bg-white/10 rounded-lg p-3 md:p-4 border border-white/20">
-                  <div className="text-xl md:text-2xl font-bold text-white">
-                    50+
-                  </div>
-                  <div className="text-xs md:text-sm text-gray-300">Marcas</div>
-                </div>
-              </div>
-            </div>
-
-            {/* Desktop Feature Card */}
-            <div className="relative hidden xl:block">
-              <div className="absolute inset-0 bg-gradient-primary rounded-3xl transform rotate-6 opacity-80"></div>
-              <div className="relative bg-white/95 backdrop-blur-md rounded-3xl p-8 shadow-2xl overflow-hidden border border-white/20">
-                <div className="relative z-10 text-center space-y-6">
-                  <div className="w-24 h-24 mx-auto rounded-full overflow-hidden border-4 border-primary/30 shadow-lg">
-                    <img
-                      src="https://images.pexels.com/photos/16216609/pexels-photo-16216609.jpeg"
-                      alt="Fitness supplements"
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  <h3 className="text-2xl font-bold text-gray-800">
-                    Calidad Premium
-                  </h3>
-                  <p className="text-gray-600">
-                    Suplementos certificados y de las mejores marcas
-                    internacionales
-                  </p>
-                  <div className="flex justify-center space-x-2">
-                    {[1, 2, 3, 4, 5].map((i) => (
-                      <Star
-                        key={i}
-                        className="w-5 h-5 fill-yellow-400 text-yellow-400"
-                      />
-                    ))}
-                  </div>
-                  <div className="bg-gradient-primary text-white px-4 py-2 rounded-full text-sm font-semibold">
-                    +15,000 clientes satisfechos
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Mobile Feature Banner */}
-            <div className="xl:hidden mt-8 lg:mt-0">
-              <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 text-center">
-                <div className="flex items-center justify-center space-x-2 mb-3">
-                  {[1, 2, 3, 4, 5].map((i) => (
-                    <Star
-                      key={i}
-                      className="w-4 h-4 fill-yellow-400 text-yellow-400"
-                    />
-                  ))}
-                </div>
-                <h3 className="text-white font-bold text-lg mb-2">
-                  Calidad Premium
-                </h3>
-                <p className="text-gray-300 text-sm mb-3">
-                  Suplementos certificados de las mejores marcas
-                </p>
-                <div className="bg-gradient-primary text-white px-4 py-2 rounded-full text-sm font-semibold inline-block">
-                  +15,000 clientes satisfechos
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Features */}
-      <section className="relative py-16 overflow-hidden">
-        <div className="absolute inset-0">
-          <img
-            src="https://images.pexels.com/photos/3612932/pexels-photo-3612932.jpeg"
-            alt="Abstract pattern background"
-            className="w-full h-full object-cover opacity-5"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-white via-secondary/50 to-white"></div>
+          <div className="absolute inset-0 bg-black/70"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/50 to-black/40"></div>
         </div>
         <div className="container relative z-10">
-          <div className="grid md:grid-cols-4 gap-8">
-            <div className="text-center space-y-4 group">
-              <div className="w-16 h-16 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center mx-auto shadow-lg group-hover:scale-110 transition-transform duration-300">
-                <Truck className="w-8 h-8 text-white" />
-              </div>
-              <h3 className="font-bold text-lg">Envío Gratis</h3>
-              <p className="text-muted-foreground">
-                En compras mayores a S/150
-              </p>
+          <div className="max-w-5xl mx-auto text-center space-y-8">
+            <h1 className="text-3xl md:text-5xl font-extrabold text-white">
+              ¿Qué buscas hoy?
+            </h1>
+            <div className="relative max-w-4xl w-full mx-auto">
+              <Search className="absolute left-6 top-1/2 -translate-y-1/2 text-white/80 w-7 h-7" />
+              <Input
+                placeholder="Proteínas, creatina, pre-entreno, vitaminas..."
+                className="pl-16 pr-36 h-16 md:h-20 text-xl md:text-2xl rounded-full bg-white/15 border-white/30 text-white placeholder:text-white/70 focus-visible:ring-2 focus-visible:ring-primary/60"
+              />
+              <Button className="absolute right-3 top-1/2 -translate-y-1/2 h-12 md:h-14 px-6 md:px-8 text-base md:text-lg rounded-full">
+                Buscar
+              </Button>
             </div>
-            <div className="text-center space-y-4 group">
-              <div className="w-16 h-16 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center mx-auto shadow-lg group-hover:scale-110 transition-transform duration-300">
-                <Shield className="w-8 h-8 text-white" />
-              </div>
-              <h3 className="font-bold text-lg">100% Seguro</h3>
-              <p className="text-muted-foreground">Productos certificados</p>
+            <div className="flex items-center justify-center gap-4">
+              <Button
+                size="lg"
+                className="bg-gradient-to-r from-primary to-accent text-white px-7 h-12"
+              >
+                Ver Proteínas
+              </Button>
+              <Button
+                size="lg"
+                className="bg-gradient-to-r from-primary to-accent text-white px-7 h-12 hover:opacity-90"
+              >
+                Ver Ofertas
+              </Button>
             </div>
-            <div className="text-center space-y-4 group">
-              <div className="w-16 h-16 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center mx-auto shadow-lg group-hover:scale-110 transition-transform duration-300">
-                <Award className="w-8 h-8 text-white" />
-              </div>
-              <h3 className="font-bold text-lg">Mejor Precio</h3>
-              <p className="text-muted-foreground">Garantía de mejor precio</p>
-            </div>
-            <div className="text-center space-y-4 group">
-              <div className="w-16 h-16 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center mx-auto shadow-lg group-hover:scale-110 transition-transform duration-300">
-                <Users className="w-8 h-8 text-white" />
-              </div>
-              <h3 className="font-bold text-lg">Atención 24/7</h3>
-              <p className="text-muted-foreground">Soporte especializado</p>
+            <div className="text-white/80 text-sm">Explora por objetivos:</div>
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4 md:gap-5">
+              {categories.slice(0, 6).map((cat, i) => (
+                <div
+                  key={i}
+                  className="relative group rounded-lg overflow-hidden"
+                >
+                  <img
+                    src={cat.image}
+                    alt={cat.name}
+                    className="h-28 w-full object-cover group-hover:scale-105 transition-transform"
+                  />
+                  <div className="absolute inset-0 bg-black/40 group-hover:bg-black/30"></div>
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <span className="text-white text-base font-semibold drop-shadow-md">
+                      {cat.name}
+                    </span>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
@@ -523,49 +457,49 @@ export default function Index() {
 
       {/* Categories */}
       <section className="relative py-20 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-gray-50 via-white to-primary/5"></div>
-        <div className="container relative z-10">
-          <div className="text-center space-y-4 mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold">
-              Categorías Populares
-            </h2>
-            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-              Encuentra exactamente lo que necesitas para tu rutina de
-              entrenamiento
-            </p>
-          </div>
-
+        <div className="absolute inset-0">
+          <img
+            src="https://images.pexels.com/photos/2261482/pexels-photo-2261482.jpeg"
+            alt="People training background"
+            className="w-full h-full object-cover opacity-20"
+          />
+          <div className="absolute inset-0 bg-gradient-to-br from-primary/30 via-accent/30 to-black/70"></div>
+        </div>
+        <div className="container max-w-none relative z-10">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {categories.map((category, index) => (
               <Card
                 key={index}
-                className="group hover:shadow-lg transition-all duration-300 cursor-pointer border-2 hover:border-primary/20 overflow-hidden"
+                className="overflow-hidden bg-white border border-border shadow-sm hover:shadow-md transition-all rounded-xl h-56 md:h-60 lg:h-64"
               >
-                <CardContent className="p-0">
-                  <div className="relative">
-                    <div className="aspect-square overflow-hidden">
+                <CardContent className="p-0 h-full">
+                  <div className="grid grid-cols-1 md:grid-cols-[220px_1fr] h-full">
+                    <div className="h-44 md:h-full">
                       <img
                         src={category.image}
                         alt={category.name}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                        className="w-full h-full object-cover"
                       />
                     </div>
-                    <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors"></div>
-                  </div>
-                  <div className="p-6 text-center space-y-4">
-                    <h3 className="text-xl font-semibold group-hover:text-primary transition-colors">
-                      {category.name}
-                    </h3>
-                    <p className="text-muted-foreground">
-                      {category.description}
-                    </p>
-                    <Button
-                      variant="ghost"
-                      className="group-hover:bg-primary group-hover:text-white transition-all"
-                    >
-                      Ver Productos
-                      <ArrowRight className="ml-2 w-4 h-4" />
-                    </Button>
+                    <div className="p-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                      <div>
+                        <h3 className="text-xl font-semibold">
+                          {category.name}
+                        </h3>
+                        <p className="text-muted-foreground text-sm mt-1">
+                          {category.description}
+                        </p>
+                        <div className="mt-3 flex flex-wrap gap-2">
+                          <span className="text-xs font-semibold px-3 py-1 rounded-full bg-secondary/30 text-foreground border border-border/50">
+                            {categoryTags[index % categoryTags.length]}
+                          </span>
+                        </div>
+                      </div>
+                      <Button className="bg-gradient-to-r from-primary to-accent text-white">
+                        Ver Productos
+                        <ArrowRight className="ml-2 w-4 h-4" />
+                      </Button>
+                    </div>
                   </div>
                 </CardContent>
               </Card>
@@ -580,53 +514,73 @@ export default function Index() {
           <img
             src="https://images.pexels.com/photos/6296123/pexels-photo-6296123.jpeg"
             alt="Fitness equipment background"
-            className="w-full h-full object-cover opacity-5"
+            className="w-full h-full object-cover opacity-20"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-gray-100 via-gray-50/80 to-gray-100"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-foreground/90 via-foreground/85 to-foreground/90" />
         </div>
         <div className="container relative z-10">
           <div className="text-center space-y-4 mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold">
+            <h2 className="text-3xl lg:text-4xl font-bold text-white">
               Productos Destacados
             </h2>
-            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-              Los suplementos más vendidos y mejor valorados por nuestros
-              clientes
+            <p className="text-white/80 text-lg max-w-2xl mx-auto">
+              Los más vendidos y mejor valorados por nuestros clientes
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-12">
             {featuredProducts.map((product) => (
               <Card
                 key={product.id}
-                className="group hover:shadow-xl transition-all duration-300 overflow-hidden"
+                className="rounded-xl overflow-hidden bg-white shadow-md hover:shadow-lg transform transition-transform hover:-translate-y-1"
               >
                 <CardContent className="p-0">
                   <div className="relative">
-                    <div className="aspect-square overflow-hidden bg-secondary">
+                    <div className="aspect-square overflow-hidden">
                       <img
                         src={product.image}
                         alt={product.name}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                        className="w-full h-full object-cover duration-300 transform group-hover:scale-105"
                       />
                     </div>
-                    {product.badge && (
-                      <Badge
-                        className={`absolute top-3 left-3 ${
-                          product.badge === "Bestseller"
-                            ? "bg-orange"
-                            : product.badge === "Oferta"
-                              ? "bg-red-500"
-                              : "bg-blue"
-                        }`}
-                      >
-                        {product.badge}
-                      </Badge>
-                    )}
+                    <div className="absolute top-3 left-3 flex gap-2 flex-wrap">
+                      {product.badge && (
+                        <Badge
+                          className={`${
+                            product.badge === "Bestseller"
+                              ? "bg-orange"
+                              : product.badge === "Oferta"
+                                ? "bg-red-500"
+                                : "bg-orange"
+                          }`}
+                        >
+                          {product.badge}
+                        </Badge>
+                      )}
+                      {(() => {
+                        const pct = product.originalPrice
+                          ? Math.round(
+                              (1 -
+                                product.price / (product.originalPrice || 1)) *
+                                100,
+                            )
+                          : null;
+                        return pct && pct > 0 ? (
+                          <span className="text-xs font-bold px-2 py-1 rounded-md bg-green-600/10 text-green-700 border border-green-600/20">
+                            -{pct}%
+                          </span>
+                        ) : null;
+                      })()}
+                    </div>
+                    <div
+                      className="absolute top-3 right-3 w-3.5 h-3.5 rounded-full bg-red-600 ring-2 ring-white"
+                      aria-hidden="true"
+                    />
                     <Button
                       size="icon"
                       variant="secondary"
-                      className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity"
+                      className="absolute top-3 right-11 opacity-0 group-hover:opacity-100 transition-opacity"
+                      aria-label="Añadir a favoritos"
                     >
                       <Heart className="w-4 h-4" />
                     </Button>
@@ -655,7 +609,7 @@ export default function Index() {
                     </div>
 
                     <div className="space-y-3">
-                      <div className="flex items-center space-x-2">
+                      <div className="flex flex-wrap items-center gap-2">
                         <span className="text-2xl font-bold text-primary">
                           S/{product.price}
                         </span>
@@ -664,12 +618,22 @@ export default function Index() {
                             S/{product.originalPrice}
                           </span>
                         )}
+                        {product.price >= 150 && (
+                          <span className="ml-auto text-xs px-2 py-1 rounded-full bg-emerald-500/10 text-emerald-700 border border-emerald-600/20">
+                            Envío gratis
+                          </span>
+                        )}
                       </div>
 
-                      <Button className="w-full group-hover:bg-primary group-hover:text-white transition-all">
-                        <ShoppingCart className="w-4 h-4 mr-2" />
-                        Agregar al Carrito
-                      </Button>
+                      <div className="grid grid-cols-2 gap-3">
+                        <Button variant="outline" className="text-foreground">
+                          Detalles
+                        </Button>
+                        <Button className="bg-gradient-to-r from-primary to-accent text-white border-0 hover:opacity-90">
+                          <ShoppingCart className="w-4 h-4 mr-2" />
+                          Agregar
+                        </Button>
+                      </div>
                     </div>
                   </div>
                 </CardContent>
@@ -678,11 +642,251 @@ export default function Index() {
           </div>
 
           <div className="text-center mt-12">
-            <Button size="lg" variant="outline">
+            <Button
+              size="lg"
+              variant="outline"
+              className="border-white/30 text-white hover:bg-white/10"
+            >
               Ver Todos los Productos
               <ArrowRight className="ml-2 w-5 h-5" />
             </Button>
           </div>
+        </div>
+      </section>
+
+      {/* Promo: Ofertas strip */}
+      <section className="relative h-40 md:h-48 overflow-hidden">
+        <div className="absolute inset-0">
+          <img
+            src="https://images.pexels.com/photos/221210/pexels-photo-221210.jpeg"
+            alt="Gym offers background"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-black/60"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-primary/40 to-accent/40"></div>
+        </div>
+        <div className="container relative z-10 h-full flex items-center justify-between gap-6">
+          <div>
+            <h3 className="text-2xl md:text-3xl font-extrabold text-white">
+              Ofertas de la Semana
+            </h3>
+            <p className="text-white/80">
+              Hasta 30% en proteínas y pre-entrenos
+            </p>
+          </div>
+          <Button className="bg-gradient-to-r from-primary to-accent text-white hover:opacity-90">
+            Ver Ofertas
+          </Button>
+        </div>
+      </section>
+
+      {/* Promo: FAQ strip */}
+      <section className="relative h-36 md:h-44 overflow-hidden">
+        <div className="absolute inset-0">
+          <img
+            src="https://images.pexels.com/photos/1552106/pexels-photo-1552106.jpeg"
+            alt="FAQ background"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-black/70"></div>
+        </div>
+        <div className="container relative z-10 h-full flex items-center justify-between">
+          <div>
+            <h3 className="text-xl md:text-2xl font-bold text-white">
+              ¿Preguntas Frecuentes?
+            </h3>
+            <p className="text-white/80">
+              Todo sobre envíos, devoluciones y métodos de pago
+            </p>
+          </div>
+          <Button
+            variant="outline"
+            className="text-white border-white/40 hover:bg-white/10"
+          >
+            Ir a Ayuda
+          </Button>
+        </div>
+      </section>
+
+      {/* Productos del día */}
+      <section className="relative py-16 overflow-hidden">
+        <div className="absolute inset-0">
+          <img
+            src="https://images.pexels.com/photos/2294403/pexels-photo-2294403.jpeg"
+            alt="Daily products background"
+            className="w-full h-full object-cover opacity-20"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-foreground/90 via-foreground/85 to-foreground/90" />
+        </div>
+        <div className="container relative z-10">
+          <div className="flex items-end justify-between mb-8">
+            <div>
+              <h3 className="text-2xl md:text-3xl font-bold text-white">
+                Productos del Día
+              </h3>
+              <p className="text-white/80">
+                Selección limitada con precios especiales
+              </p>
+            </div>
+            <Button variant="ghost">Ver más</Button>
+          </div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {featuredProducts.slice(0, 3).map((p) => (
+              <Card
+                key={`day-${p.id}`}
+                className="overflow-hidden bg-white shadow"
+              >
+                <CardContent className="p-0">
+                  <div className="relative">
+                    <img
+                      src={p.image}
+                      alt={p.name}
+                      className="w-full h-56 object-cover"
+                    />
+                    {p.originalPrice && (
+                      <div className="absolute top-3 right-3 w-3.5 h-3.5 rounded-full bg-red-600 ring-2 ring-white" />
+                    )}
+                  </div>
+                  <div className="p-5 space-y-2">
+                    <h4 className="font-semibold">{p.name}</h4>
+                    <div className="flex items-center gap-2">
+                      <span className="text-primary font-bold">
+                        S/{p.price}
+                      </span>
+                      {p.originalPrice && (
+                        <span className="text-muted-foreground line-through">
+                          S/{p.originalPrice}
+                        </span>
+                      )}
+                    </div>
+                    <Button size="sm" className="w-full">
+                      Agregar
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Oferta de la Semana (full section) */}
+      <section className="relative py-20 overflow-hidden">
+        <div className="absolute inset-0">
+          <img
+            src="https://images.pexels.com/photos/841130/pexels-photo-841130.jpeg"
+            alt="Offer background"
+            className="w-full h-full object-cover opacity-20"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/60 to-black/70" />
+        </div>
+        <div className="container relative z-10">
+          <div className="grid md:grid-cols-2 gap-10 items-center">
+            <div className="order-2 md:order-1 space-y-5">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-600/20 text-red-300 border border-red-500/30">
+                <Timer className="w-4 h-4" />
+                <span className="text-sm font-semibold">
+                  Termina en {countdown}
+                </span>
+              </div>
+              <h3 className="text-3xl md:text-4xl font-extrabold text-white">
+                Mega Oferta: Pre-Entreno Extremo
+              </h3>
+              <p className="text-white/80">
+                Potencia tu energía y enfoque. Solo por tiempo limitado con 20%
+                de descuento.
+              </p>
+              <div className="flex items-center gap-4">
+                <span className="text-3xl font-bold text-primary">S/129.9</span>
+                <span className="text-xl text-white/60 line-through">
+                  S/149.9
+                </span>
+                <span className="ml-2 text-xs font-bold px-2 py-1 rounded-md bg-green-600/10 text-green-700 border border-green-600/20">
+                  -13%
+                </span>
+              </div>
+              <div className="flex gap-3">
+                <Button className="bg-gradient-to-r from-primary to-accent text-white">
+                  Comprar ahora
+                </Button>
+                <Button
+                  variant="outline"
+                  className="text-white border-white/30 hover:bg-white/10"
+                >
+                  Ver detalles
+                </Button>
+              </div>
+            </div>
+            <div className="order-1 md:order-2">
+              <Card className="overflow-hidden bg-white shadow-xl">
+                <CardContent className="p-0">
+                  <img
+                    src="https://images.pexels.com/photos/13779103/pexels-photo-13779103.jpeg"
+                    alt="Pre-Entreno Extremo"
+                    className="w-full h-[360px] object-cover"
+                  />
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Preguntas Frecuentes (full section) */}
+      <section className="relative py-20 overflow-hidden">
+        <div className="absolute inset-0">
+          <img
+            src="https://images.pexels.com/photos/1954524/pexels-photo-1954524.jpeg"
+            alt="FAQ background"
+            className="w-full h-full object-cover opacity-20"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-foreground/90 via-foreground/85 to-foreground/90" />
+        </div>
+        <div className="container relative z-10">
+          <div className="mb-8">
+            <h3 className="text-3xl font-bold text-white">
+              Preguntas Frecuentes
+            </h3>
+            <p className="text-white/80">
+              Todo lo que necesitas saber antes de comprar
+            </p>
+          </div>
+          <Accordion type="single" collapsible className="w-full text-white">
+            <AccordionItem value="item-1">
+              <AccordionTrigger>¿Cuánto demora el envío?</AccordionTrigger>
+              <AccordionContent>
+                En Lima de 24 a 48 horas y a provincias entre 2 a 5 días
+                hábiles. Envío gratis desde S/150.
+              </AccordionContent>
+            </AccordionItem>
+            <AccordionItem value="item-2">
+              <AccordionTrigger>
+                ¿Los productos son originales?
+              </AccordionTrigger>
+              <AccordionContent>
+                Sí, trabajamos con marcas certificadas y distribuidores
+                oficiales. Garantía de autenticidad.
+              </AccordionContent>
+            </AccordionItem>
+            <AccordionItem value="item-3">
+              <AccordionTrigger>
+                ¿Puedo cambiar o devolver un producto?
+              </AccordionTrigger>
+              <AccordionContent>
+                Sí, dentro de los 7 días de recibido si el producto está sellado
+                y en perfecto estado. Consulta nuestra política de devoluciones.
+              </AccordionContent>
+            </AccordionItem>
+            <AccordionItem value="item-4">
+              <AccordionTrigger>
+                ¿Qué m��todos de pago aceptan?
+              </AccordionTrigger>
+              <AccordionContent>
+                Aceptamos tarjetas de crédito/débito, transferencias y Yape/Plin
+                en Perú.
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
         </div>
       </section>
 
@@ -735,6 +939,50 @@ export default function Index() {
               </div>
             </CardContent>
           </Card>
+        </div>
+      </section>
+
+      {/* Features (moved just before footer) */}
+      <section className="relative py-16 overflow-hidden">
+        <div className="absolute inset-0">
+          <img
+            src="https://images.pexels.com/photos/3612932/pexels-photo-3612932.jpeg"
+            alt="Abstract pattern background"
+            className="w-full h-full object-cover opacity-10"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-foreground/90 via-foreground/85 to-foreground/90"></div>
+        </div>
+        <div className="container relative z-10">
+          <div className="grid md:grid-cols-4 gap-8">
+            <div className="text-center space-y-4 group">
+              <div className="w-16 h-16 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center mx-auto shadow-lg group-hover:scale-110 transition-transform duration-300">
+                <Truck className="w-8 h-8 text-white" />
+              </div>
+              <h3 className="font-bold text-lg text-white">Envío Gratis</h3>
+              <p className="text-white/80">En compras mayores a S/150</p>
+            </div>
+            <div className="text-center space-y-4 group">
+              <div className="w-16 h-16 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center mx-auto shadow-lg group-hover:scale-110 transition-transform duration-300">
+                <Shield className="w-8 h-8 text-white" />
+              </div>
+              <h3 className="font-bold text-lg text-white">100% Seguro</h3>
+              <p className="text-white/80">Productos certificados</p>
+            </div>
+            <div className="text-center space-y-4 group">
+              <div className="w-16 h-16 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center mx-auto shadow-lg group-hover:scale-110 transition-transform duration-300">
+                <Award className="w-8 h-8 text-white" />
+              </div>
+              <h3 className="font-bold text-lg text-white">Mejor Precio</h3>
+              <p className="text-white/80">Garantía de mejor precio</p>
+            </div>
+            <div className="text-center space-y-4 group">
+              <div className="w-16 h-16 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center mx-auto shadow-lg group-hover:scale-110 transition-transform duration-300">
+                <Users className="w-8 h-8 text-white" />
+              </div>
+              <h3 className="font-bold text-lg text-white">Atención 24/7</h3>
+              <p className="text-white/80">Soporte especializado</p>
+            </div>
+          </div>
         </div>
       </section>
 
