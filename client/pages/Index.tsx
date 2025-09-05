@@ -108,7 +108,7 @@ export default function Index() {
       name: "Pre-Entreno Extremo",
       brand: "BeastMode",
       price: 129.9,
-      originalPrice: null,
+      originalPrice: 149.9,
       image:
         "https://images.pexels.com/photos/13779103/pexels-photo-13779103.jpeg",
       rating: 4.7,
@@ -125,6 +125,54 @@ export default function Index() {
         "https://images.pexels.com/photos/6475117/pexels-photo-6475117.jpeg",
       rating: 4.6,
       reviews: 167,
+      badge: null,
+    },
+    {
+      id: 5,
+      name: "Multivitamínico Elite",
+      brand: "VitaStrong",
+      price: 69.9,
+      originalPrice: 89.9,
+      image:
+        "https://images.pexels.com/photos/3873209/pexels-photo-3873209.jpeg",
+      rating: 4.5,
+      reviews: 98,
+      badge: "Oferta",
+    },
+    {
+      id: 6,
+      name: "Proteína Vegana",
+      brand: "GreenFuel",
+      price: 139.9,
+      originalPrice: null,
+      image:
+        "https://images.pexels.com/photos/4735903/pexels-photo-4735903.jpeg",
+      rating: 4.4,
+      reviews: 72,
+      badge: null,
+    },
+    {
+      id: 7,
+      name: "Glutamina Micronizada",
+      brand: "RecoveryX",
+      price: 84.9,
+      originalPrice: 99.9,
+      image:
+        "https://images.pexels.com/photos/13779107/pexels-photo-13779107.jpeg",
+      rating: 4.6,
+      reviews: 120,
+      badge: null,
+    },
+    {
+      id: 8,
+      name: "Omega-3 Ultra",
+      brand: "HeartPlus",
+      price: 59.9,
+      originalPrice: 79.9,
+      image:
+        "https://images.pexels.com/photos/3873147/pexels-photo-3873147.jpeg",
+      rating: 4.3,
+      reviews: 64,
       badge: null,
     },
   ];
