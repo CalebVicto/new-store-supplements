@@ -151,8 +151,8 @@ export default function Index() {
       <header
         className={`border-b sticky top-0 z-50 transition-all duration-300 ${
           isScrolled
-            ? "bg-foreground/90 backdrop-blur-lg shadow-lg border-foreground/20"
-            : "bg-transparent backdrop-blur-0 shadow-none border-transparent"
+            ? "bg-black/90 backdrop-blur-md shadow-md border-black/40"
+            : "bg-black/90 backdrop-blur-md shadow-md border-black/40"
         }`}
       >
         <div className="container">
@@ -301,7 +301,7 @@ export default function Index() {
       </header>
 
       {/* Quick Search + Category Hero (just after header) */}
-      <section className="relative min-h-screen flex items-center overflow-hidden">
+      <section className="relative min-h-[70vh] flex items-center overflow-hidden">
         <div className="absolute inset-0">
           <img
             src="https://images.pexels.com/photos/1552252/pexels-photo-1552252.jpeg"
@@ -312,30 +312,30 @@ export default function Index() {
           <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/50 to-black/40"></div>
         </div>
         <div className="container relative z-10">
-          <div className="max-w-2xl mx-auto text-center space-y-6">
+          <div className="max-w-3xl mx-auto text-center space-y-8">
             <h1 className="text-3xl md:text-5xl font-extrabold text-white">
               ¿Qué buscas hoy?
             </h1>
-            <div className="relative max-w-xl mx-auto">
-              <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-white/70 w-5 h-5" />
+            <div className="relative max-w-2xl mx-auto">
+              <Search className="absolute left-5 top-1/2 -translate-y-1/2 text-white/70 w-6 h-6" />
               <Input
                 placeholder="Proteínas, creatina, pre-entreno, vitaminas..."
-                className="pl-12 h-14 text-lg bg-white/10 border-white/20 text-white placeholder:text-white/70"
+                className="pl-14 h-16 text-xl bg-white/10 border-white/20 text-white placeholder:text-white/70"
               />
-              <Button className="absolute right-2 top-1/2 -translate-y-1/2 h-10 px-5">
+              <Button className="absolute right-3 top-1/2 -translate-y-1/2 h-12 px-7 text-base">
                 Buscar
               </Button>
             </div>
             <div className="text-white/80 text-sm">
               Explora por objetivos:
             </div>
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4 md:gap-5">
               {categories.slice(0, 6).map((cat, i) => (
                 <div key={i} className="relative group rounded-lg overflow-hidden">
-                  <img src={cat.image} alt={cat.name} className="h-20 w-full object-cover group-hover:scale-105 transition-transform" />
+                  <img src={cat.image} alt={cat.name} className="h-28 w-full object-cover group-hover:scale-105 transition-transform" />
                   <div className="absolute inset-0 bg-black/40 group-hover:bg-black/30"></div>
                   <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="text-white text-sm font-semibold drop-shadow-md">
+                    <span className="text-white text-base font-semibold drop-shadow-md">
                       {cat.name}
                     </span>
                   </div>
@@ -418,7 +418,7 @@ export default function Index() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10 md:gap-12">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-12">
             {featuredProducts.map((product) => (
               <Card
                 key={product.id}
@@ -457,10 +457,11 @@ export default function Index() {
                           ) : null;
                         })()}
                       </div>
+                      <div className="absolute top-3 right-3 w-3.5 h-3.5 rounded-full bg-red-600 ring-2 ring-white" aria-hidden="true" />
                       <Button
                         size="icon"
                         variant="secondary"
-                        className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity"
+                        className="absolute top-3 right-11 opacity-0 group-hover:opacity-100 transition-opacity"
                         aria-label="Añadir a favoritos"
                       >
                         <Heart className="w-4 h-4" />
