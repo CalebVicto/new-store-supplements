@@ -2,7 +2,12 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 import {
   ShoppingCart,
   Search,
@@ -67,8 +72,7 @@ export default function Index() {
     },
     {
       name: "Pre-Entreno",
-      image:
-        "https://images.pexels.com/photos/841130/pexels-photo-841130.jpeg",
+      image: "https://images.pexels.com/photos/841130/pexels-photo-841130.jpeg",
       description: "Energía y enfoque para rendir al máximo",
     },
     {
@@ -97,7 +101,14 @@ export default function Index() {
     },
   ];
 
-  const categoryTags = ["Músculo","Energía","Recovery","Salud","Cardio","Fuerza"];
+  const categoryTags = [
+    "Músculo",
+    "Energía",
+    "Recovery",
+    "Salud",
+    "Cardio",
+    "Fuerza",
+  ];
 
   const featuredProducts = [
     {
@@ -264,7 +275,10 @@ export default function Index() {
               <a href="/productos" className="text-white/80 hover:text-white">
                 Productos
               </a>
-              <a href="/categorias" className="text-white/90 hover:text-white px-3 py-1.5 rounded-md bg-white/10 hover:bg-white/20 border border-white/20">
+              <a
+                href="/categorias"
+                className="text-white/90 hover:text-white px-3 py-1.5 rounded-md bg-white/10 hover:bg-white/20 border border-white/20"
+              >
                 Categorías
               </a>
               <a href="/marcas" className="text-white/80 hover:text-white">
@@ -289,12 +303,19 @@ export default function Index() {
               </div>
 
               {/* Mobile Search Button */}
-              <Button variant="ghost" size="sm" className="lg:hidden p-2 text-white">
+              <Button
+                variant="ghost"
+                size="sm"
+                className="lg:hidden p-2 text-white"
+              >
                 <Search className="w-5 h-5 text-white/90" />
               </Button>
 
               {/* Cart Button */}
-              <Button size="sm" className="relative p-2 md:px-3 bg-white/10 hover:bg-white/20 text-white">
+              <Button
+                size="sm"
+                className="relative p-2 md:px-3 bg-white/10 hover:bg-white/20 text-white"
+              >
                 <ShoppingCart className="w-5 h-5" />
                 <Badge className="absolute -top-1 -right-1 w-5 h-5 flex items-center justify-center p-0 text-xs bg-orange text-white border-2 border-foreground">
                   3
@@ -396,16 +417,31 @@ export default function Index() {
               </Button>
             </div>
             <div className="flex items-center justify-center gap-4">
-              <Button size="lg" className="bg-gradient-to-r from-primary to-accent text-white px-7 h-12">Ver Proteínas</Button>
-              <Button size="lg" className="bg-gradient-to-r from-primary to-accent text-white px-7 h-12 hover:opacity-90">Ver Ofertas</Button>
+              <Button
+                size="lg"
+                className="bg-gradient-to-r from-primary to-accent text-white px-7 h-12"
+              >
+                Ver Proteínas
+              </Button>
+              <Button
+                size="lg"
+                className="bg-gradient-to-r from-primary to-accent text-white px-7 h-12 hover:opacity-90"
+              >
+                Ver Ofertas
+              </Button>
             </div>
-            <div className="text-white/80 text-sm">
-              Explora por objetivos:
-            </div>
+            <div className="text-white/80 text-sm">Explora por objetivos:</div>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4 md:gap-5">
               {categories.slice(0, 6).map((cat, i) => (
-                <div key={i} className="relative group rounded-lg overflow-hidden">
-                  <img src={cat.image} alt={cat.name} className="h-28 w-full object-cover group-hover:scale-105 transition-transform" />
+                <div
+                  key={i}
+                  className="relative group rounded-lg overflow-hidden"
+                >
+                  <img
+                    src={cat.image}
+                    alt={cat.name}
+                    className="h-28 w-full object-cover group-hover:scale-105 transition-transform"
+                  />
                   <div className="absolute inset-0 bg-black/40 group-hover:bg-black/30"></div>
                   <div className="absolute inset-0 flex items-center justify-center">
                     <span className="text-white text-base font-semibold drop-shadow-md">
@@ -432,16 +468,27 @@ export default function Index() {
         <div className="container max-w-none relative z-10">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {categories.map((category, index) => (
-              <Card key={index} className="overflow-hidden bg-white border border-border shadow-sm hover:shadow-md transition-all rounded-xl h-56 md:h-60 lg:h-64">
+              <Card
+                key={index}
+                className="overflow-hidden bg-white border border-border shadow-sm hover:shadow-md transition-all rounded-xl h-56 md:h-60 lg:h-64"
+              >
                 <CardContent className="p-0 h-full">
                   <div className="grid grid-cols-1 md:grid-cols-[220px_1fr] h-full">
                     <div className="h-44 md:h-full">
-                      <img src={category.image} alt={category.name} className="w-full h-full object-cover" />
+                      <img
+                        src={category.image}
+                        alt={category.name}
+                        className="w-full h-full object-cover"
+                      />
                     </div>
                     <div className="p-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                       <div>
-                        <h3 className="text-xl font-semibold">{category.name}</h3>
-                        <p className="text-muted-foreground text-sm mt-1">{category.description}</p>
+                        <h3 className="text-xl font-semibold">
+                          {category.name}
+                        </h3>
+                        <p className="text-muted-foreground text-sm mt-1">
+                          {category.description}
+                        </p>
                         <div className="mt-3 flex flex-wrap gap-2">
                           <span className="text-xs font-semibold px-3 py-1 rounded-full bg-secondary/30 text-foreground border border-border/50">
                             {categoryTags[index % categoryTags.length]}
@@ -464,12 +511,18 @@ export default function Index() {
       {/* Featured Products */}
       <section className="relative py-20 overflow-hidden">
         <div className="absolute inset-0">
-          <img src="https://images.pexels.com/photos/6296123/pexels-photo-6296123.jpeg" alt="Fitness equipment background" className="w-full h-full object-cover opacity-20" />
+          <img
+            src="https://images.pexels.com/photos/6296123/pexels-photo-6296123.jpeg"
+            alt="Fitness equipment background"
+            className="w-full h-full object-cover opacity-20"
+          />
           <div className="absolute inset-0 bg-gradient-to-t from-foreground/90 via-foreground/85 to-foreground/90" />
         </div>
         <div className="container relative z-10">
           <div className="text-center space-y-4 mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold text-white">Productos Destacados</h2>
+            <h2 className="text-3xl lg:text-4xl font-bold text-white">
+              Productos Destacados
+            </h2>
             <p className="text-white/80 text-lg max-w-2xl mx-auto">
               Los más vendidos y mejor valorados por nuestros clientes
             </p>
@@ -479,101 +532,121 @@ export default function Index() {
             {featuredProducts.map((product) => (
               <Card
                 key={product.id}
-                className="rounded-xl overflow-hidden bg-white shadow-md hover:shadow-lg transform transition-transform hover:-translate-y-1">
-                  <CardContent className="p-0">
-                    <div className="relative">
-                      <div className="aspect-square overflow-hidden">
-                        <img
-                          src={product.image}
-                          alt={product.name}
-                          className="w-full h-full object-cover duration-300 transform group-hover:scale-105"
-                        />
-                      </div>
-                      <div className="absolute top-3 left-3 flex gap-2 flex-wrap">
-                        {product.badge && (
-                          <Badge
-                            className={`${
-                              product.badge === "Bestseller"
-                                ? "bg-orange"
-                                : product.badge === "Oferta"
+                className="rounded-xl overflow-hidden bg-white shadow-md hover:shadow-lg transform transition-transform hover:-translate-y-1"
+              >
+                <CardContent className="p-0">
+                  <div className="relative">
+                    <div className="aspect-square overflow-hidden">
+                      <img
+                        src={product.image}
+                        alt={product.name}
+                        className="w-full h-full object-cover duration-300 transform group-hover:scale-105"
+                      />
+                    </div>
+                    <div className="absolute top-3 left-3 flex gap-2 flex-wrap">
+                      {product.badge && (
+                        <Badge
+                          className={`${
+                            product.badge === "Bestseller"
+                              ? "bg-orange"
+                              : product.badge === "Oferta"
                                 ? "bg-red-500"
                                 : "bg-orange"
-                            }`}
-                          >
-                            {product.badge}
-                          </Badge>
-                        )}
-                        {(() => {
-                          const pct = product.originalPrice
-                            ? Math.round((1 - product.price / (product.originalPrice || 1)) * 100)
-                            : null;
-                          return pct && pct > 0 ? (
-                            <span className="text-xs font-bold px-2 py-1 rounded-md bg-green-600/10 text-green-700 border border-green-600/20">
-                              -{pct}%
-                            </span>
-                          ) : null;
-                        })()}
-                      </div>
-                      <div className="absolute top-3 right-3 w-3.5 h-3.5 rounded-full bg-red-600 ring-2 ring-white" aria-hidden="true" />
-                      <Button
-                        size="icon"
-                        variant="secondary"
-                        className="absolute top-3 right-11 opacity-0 group-hover:opacity-100 transition-opacity"
-                        aria-label="Añadir a favoritos"
-                      >
-                        <Heart className="w-4 h-4" />
-                      </Button>
-                    </div>
-
-                    <div className="p-6 space-y-4">
-                      <div>
-                        <p className="text-sm text-muted-foreground">{product.brand}</p>
-                        <h3 className="font-semibold text-lg leading-tight">
-                          {product.name}
-                        </h3>
-                      </div>
-
-                      <div className="flex items-center space-x-2">
-                        <div className="flex items-center">
-                          <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                          <span className="text-sm font-medium ml-1">
-                            {product.rating}
+                          }`}
+                        >
+                          {product.badge}
+                        </Badge>
+                      )}
+                      {(() => {
+                        const pct = product.originalPrice
+                          ? Math.round(
+                              (1 -
+                                product.price / (product.originalPrice || 1)) *
+                                100,
+                            )
+                          : null;
+                        return pct && pct > 0 ? (
+                          <span className="text-xs font-bold px-2 py-1 rounded-md bg-green-600/10 text-green-700 border border-green-600/20">
+                            -{pct}%
                           </span>
-                        </div>
-                        <span className="text-sm text-muted-foreground">({product.reviews})</span>
+                        ) : null;
+                      })()}
+                    </div>
+                    <div
+                      className="absolute top-3 right-3 w-3.5 h-3.5 rounded-full bg-red-600 ring-2 ring-white"
+                      aria-hidden="true"
+                    />
+                    <Button
+                      size="icon"
+                      variant="secondary"
+                      className="absolute top-3 right-11 opacity-0 group-hover:opacity-100 transition-opacity"
+                      aria-label="Añadir a favoritos"
+                    >
+                      <Heart className="w-4 h-4" />
+                    </Button>
+                  </div>
+
+                  <div className="p-6 space-y-4">
+                    <div>
+                      <p className="text-sm text-muted-foreground">
+                        {product.brand}
+                      </p>
+                      <h3 className="font-semibold text-lg leading-tight">
+                        {product.name}
+                      </h3>
+                    </div>
+
+                    <div className="flex items-center space-x-2">
+                      <div className="flex items-center">
+                        <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                        <span className="text-sm font-medium ml-1">
+                          {product.rating}
+                        </span>
+                      </div>
+                      <span className="text-sm text-muted-foreground">
+                        ({product.reviews})
+                      </span>
+                    </div>
+
+                    <div className="space-y-3">
+                      <div className="flex flex-wrap items-center gap-2">
+                        <span className="text-2xl font-bold text-primary">
+                          S/{product.price}
+                        </span>
+                        {product.originalPrice && (
+                          <span className="text-lg text-muted-foreground line-through">
+                            S/{product.originalPrice}
+                          </span>
+                        )}
+                        {product.price >= 150 && (
+                          <span className="ml-auto text-xs px-2 py-1 rounded-full bg-emerald-500/10 text-emerald-700 border border-emerald-600/20">
+                            Envío gratis
+                          </span>
+                        )}
                       </div>
 
-                      <div className="space-y-3">
-                        <div className="flex flex-wrap items-center gap-2">
-                          <span className="text-2xl font-bold text-primary">S/{product.price}</span>
-                          {product.originalPrice && (
-                            <span className="text-lg text-muted-foreground line-through">S/{product.originalPrice}</span>
-                          )}
-                          {product.price >= 150 && (
-                            <span className="ml-auto text-xs px-2 py-1 rounded-full bg-emerald-500/10 text-emerald-700 border border-emerald-600/20">
-                              Envío gratis
-                            </span>
-                          )}
-                        </div>
-
-                        <div className="grid grid-cols-2 gap-3">
-                          <Button variant="outline" className="text-foreground">
-                            Detalles
-                          </Button>
-                          <Button className="bg-gradient-to-r from-primary to-accent text-white border-0 hover:opacity-90">
-                            <ShoppingCart className="w-4 h-4 mr-2" />
-                            Agregar
-                          </Button>
-                        </div>
+                      <div className="grid grid-cols-2 gap-3">
+                        <Button variant="outline" className="text-foreground">
+                          Detalles
+                        </Button>
+                        <Button className="bg-gradient-to-r from-primary to-accent text-white border-0 hover:opacity-90">
+                          <ShoppingCart className="w-4 h-4 mr-2" />
+                          Agregar
+                        </Button>
                       </div>
                     </div>
-                  </CardContent>
+                  </div>
+                </CardContent>
               </Card>
             ))}
           </div>
 
           <div className="text-center mt-12">
-            <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10">
+            <Button
+              size="lg"
+              variant="outline"
+              className="border-white/30 text-white hover:bg-white/10"
+            >
               Ver Todos los Productos
               <ArrowRight className="ml-2 w-5 h-5" />
             </Button>
@@ -584,54 +657,92 @@ export default function Index() {
       {/* Promo: Ofertas strip */}
       <section className="relative h-40 md:h-48 overflow-hidden">
         <div className="absolute inset-0">
-          <img src="https://images.pexels.com/photos/221210/pexels-photo-221210.jpeg" alt="Gym offers background" className="w-full h-full object-cover" />
+          <img
+            src="https://images.pexels.com/photos/221210/pexels-photo-221210.jpeg"
+            alt="Gym offers background"
+            className="w-full h-full object-cover"
+          />
           <div className="absolute inset-0 bg-black/60"></div>
           <div className="absolute inset-0 bg-gradient-to-r from-primary/40 to-accent/40"></div>
         </div>
         <div className="container relative z-10 h-full flex items-center justify-between gap-6">
           <div>
-            <h3 className="text-2xl md:text-3xl font-extrabold text-white">Ofertas de la Semana</h3>
-            <p className="text-white/80">Hasta 30% en proteínas y pre-entrenos</p>
+            <h3 className="text-2xl md:text-3xl font-extrabold text-white">
+              Ofertas de la Semana
+            </h3>
+            <p className="text-white/80">
+              Hasta 30% en proteínas y pre-entrenos
+            </p>
           </div>
-          <Button className="bg-gradient-to-r from-primary to-accent text-white hover:opacity-90">Ver Ofertas</Button>
+          <Button className="bg-gradient-to-r from-primary to-accent text-white hover:opacity-90">
+            Ver Ofertas
+          </Button>
         </div>
       </section>
 
       {/* Promo: FAQ strip */}
       <section className="relative h-36 md:h-44 overflow-hidden">
         <div className="absolute inset-0">
-          <img src="https://images.pexels.com/photos/1552106/pexels-photo-1552106.jpeg" alt="FAQ background" className="w-full h-full object-cover" />
+          <img
+            src="https://images.pexels.com/photos/1552106/pexels-photo-1552106.jpeg"
+            alt="FAQ background"
+            className="w-full h-full object-cover"
+          />
           <div className="absolute inset-0 bg-black/70"></div>
         </div>
         <div className="container relative z-10 h-full flex items-center justify-between">
           <div>
-            <h3 className="text-xl md:text-2xl font-bold text-white">¿Preguntas Frecuentes?</h3>
-            <p className="text-white/80">Todo sobre envíos, devoluciones y métodos de pago</p>
+            <h3 className="text-xl md:text-2xl font-bold text-white">
+              ¿Preguntas Frecuentes?
+            </h3>
+            <p className="text-white/80">
+              Todo sobre envíos, devoluciones y métodos de pago
+            </p>
           </div>
-          <Button variant="outline" className="text-white border-white/40 hover:bg-white/10">Ir a Ayuda</Button>
+          <Button
+            variant="outline"
+            className="text-white border-white/40 hover:bg-white/10"
+          >
+            Ir a Ayuda
+          </Button>
         </div>
       </section>
 
       {/* Productos del día */}
       <section className="relative py-16 overflow-hidden">
         <div className="absolute inset-0">
-          <img src="https://images.pexels.com/photos/2294403/pexels-photo-2294403.jpeg" alt="Daily products background" className="w-full h-full object-cover opacity-20" />
+          <img
+            src="https://images.pexels.com/photos/2294403/pexels-photo-2294403.jpeg"
+            alt="Daily products background"
+            className="w-full h-full object-cover opacity-20"
+          />
           <div className="absolute inset-0 bg-gradient-to-t from-foreground/90 via-foreground/85 to-foreground/90" />
         </div>
         <div className="container relative z-10">
           <div className="flex items-end justify-between mb-8">
             <div>
-              <h3 className="text-2xl md:text-3xl font-bold text-white">Productos del Día</h3>
-              <p className="text-white/80">Selección limitada con precios especiales</p>
+              <h3 className="text-2xl md:text-3xl font-bold text-white">
+                Productos del Día
+              </h3>
+              <p className="text-white/80">
+                Selección limitada con precios especiales
+              </p>
             </div>
             <Button variant="ghost">Ver más</Button>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {featuredProducts.slice(0, 3).map((p) => (
-              <Card key={`day-${p.id}`} className="overflow-hidden bg-white shadow">
+              <Card
+                key={`day-${p.id}`}
+                className="overflow-hidden bg-white shadow"
+              >
                 <CardContent className="p-0">
                   <div className="relative">
-                    <img src={p.image} alt={p.name} className="w-full h-56 object-cover" />
+                    <img
+                      src={p.image}
+                      alt={p.name}
+                      className="w-full h-56 object-cover"
+                    />
                     {p.originalPrice && (
                       <div className="absolute top-3 right-3 w-3.5 h-3.5 rounded-full bg-red-600 ring-2 ring-white" />
                     )}
@@ -639,10 +750,18 @@ export default function Index() {
                   <div className="p-5 space-y-2">
                     <h4 className="font-semibold">{p.name}</h4>
                     <div className="flex items-center gap-2">
-                      <span className="text-primary font-bold">S/{p.price}</span>
-                      {p.originalPrice && <span className="text-muted-foreground line-through">S/{p.originalPrice}</span>}
+                      <span className="text-primary font-bold">
+                        S/{p.price}
+                      </span>
+                      {p.originalPrice && (
+                        <span className="text-muted-foreground line-through">
+                          S/{p.originalPrice}
+                        </span>
+                      )}
                     </div>
-                    <Button size="sm" className="w-full">Agregar</Button>
+                    <Button size="sm" className="w-full">
+                      Agregar
+                    </Button>
                   </div>
                 </CardContent>
               </Card>
@@ -654,7 +773,11 @@ export default function Index() {
       {/* Oferta de la Semana (full section) */}
       <section className="relative py-20 overflow-hidden">
         <div className="absolute inset-0">
-          <img src="https://images.pexels.com/photos/841130/pexels-photo-841130.jpeg" alt="Offer background" className="w-full h-full object-cover opacity-20" />
+          <img
+            src="https://images.pexels.com/photos/841130/pexels-photo-841130.jpeg"
+            alt="Offer background"
+            className="w-full h-full object-cover opacity-20"
+          />
           <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/60 to-black/70" />
         </div>
         <div className="container relative z-10">
@@ -662,24 +785,46 @@ export default function Index() {
             <div className="order-2 md:order-1 space-y-5">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-600/20 text-red-300 border border-red-500/30">
                 <Timer className="w-4 h-4" />
-                <span className="text-sm font-semibold">Termina en {countdown}</span>
+                <span className="text-sm font-semibold">
+                  Termina en {countdown}
+                </span>
               </div>
-              <h3 className="text-3xl md:text-4xl font-extrabold text-white">Mega Oferta: Pre-Entreno Extremo</h3>
-              <p className="text-white/80">Potencia tu energía y enfoque. Solo por tiempo limitado con 20% de descuento.</p>
+              <h3 className="text-3xl md:text-4xl font-extrabold text-white">
+                Mega Oferta: Pre-Entreno Extremo
+              </h3>
+              <p className="text-white/80">
+                Potencia tu energía y enfoque. Solo por tiempo limitado con 20%
+                de descuento.
+              </p>
               <div className="flex items-center gap-4">
                 <span className="text-3xl font-bold text-primary">S/129.9</span>
-                <span className="text-xl text-white/60 line-through">S/149.9</span>
-                <span className="ml-2 text-xs font-bold px-2 py-1 rounded-md bg-green-600/10 text-green-700 border border-green-600/20">-13%</span>
+                <span className="text-xl text-white/60 line-through">
+                  S/149.9
+                </span>
+                <span className="ml-2 text-xs font-bold px-2 py-1 rounded-md bg-green-600/10 text-green-700 border border-green-600/20">
+                  -13%
+                </span>
               </div>
               <div className="flex gap-3">
-                <Button className="bg-gradient-to-r from-primary to-accent text-white">Comprar ahora</Button>
-                <Button variant="outline" className="text-white border-white/30 hover:bg-white/10">Ver detalles</Button>
+                <Button className="bg-gradient-to-r from-primary to-accent text-white">
+                  Comprar ahora
+                </Button>
+                <Button
+                  variant="outline"
+                  className="text-white border-white/30 hover:bg-white/10"
+                >
+                  Ver detalles
+                </Button>
               </div>
             </div>
             <div className="order-1 md:order-2">
               <Card className="overflow-hidden bg-white shadow-xl">
                 <CardContent className="p-0">
-                  <img src="https://images.pexels.com/photos/13779103/pexels-photo-13779103.jpeg" alt="Pre-Entreno Extremo" className="w-full h-[360px] object-cover" />
+                  <img
+                    src="https://images.pexels.com/photos/13779103/pexels-photo-13779103.jpeg"
+                    alt="Pre-Entreno Extremo"
+                    className="w-full h-[360px] object-cover"
+                  />
                 </CardContent>
               </Card>
             </div>
@@ -690,37 +835,55 @@ export default function Index() {
       {/* Preguntas Frecuentes (full section) */}
       <section className="relative py-20 overflow-hidden">
         <div className="absolute inset-0">
-          <img src="https://images.pexels.com/photos/1954524/pexels-photo-1954524.jpeg" alt="FAQ background" className="w-full h-full object-cover opacity-20" />
+          <img
+            src="https://images.pexels.com/photos/1954524/pexels-photo-1954524.jpeg"
+            alt="FAQ background"
+            className="w-full h-full object-cover opacity-20"
+          />
           <div className="absolute inset-0 bg-gradient-to-t from-foreground/90 via-foreground/85 to-foreground/90" />
         </div>
         <div className="container relative z-10">
           <div className="mb-8">
-            <h3 className="text-3xl font-bold text-white">Preguntas Frecuentes</h3>
-            <p className="text-white/80">Todo lo que necesitas saber antes de comprar</p>
+            <h3 className="text-3xl font-bold text-white">
+              Preguntas Frecuentes
+            </h3>
+            <p className="text-white/80">
+              Todo lo que necesitas saber antes de comprar
+            </p>
           </div>
           <Accordion type="single" collapsible className="w-full text-white">
             <AccordionItem value="item-1">
               <AccordionTrigger>¿Cuánto demora el envío?</AccordionTrigger>
               <AccordionContent>
-                En Lima de 24 a 48 horas y a provincias entre 2 a 5 días hábiles. Envío gratis desde S/150.
+                En Lima de 24 a 48 horas y a provincias entre 2 a 5 días
+                hábiles. Envío gratis desde S/150.
               </AccordionContent>
             </AccordionItem>
             <AccordionItem value="item-2">
-              <AccordionTrigger>¿Los productos son originales?</AccordionTrigger>
+              <AccordionTrigger>
+                ¿Los productos son originales?
+              </AccordionTrigger>
               <AccordionContent>
-                Sí, trabajamos con marcas certificadas y distribuidores oficiales. Garantía de autenticidad.
+                Sí, trabajamos con marcas certificadas y distribuidores
+                oficiales. Garantía de autenticidad.
               </AccordionContent>
             </AccordionItem>
             <AccordionItem value="item-3">
-              <AccordionTrigger>¿Puedo cambiar o devolver un producto?</AccordionTrigger>
+              <AccordionTrigger>
+                ¿Puedo cambiar o devolver un producto?
+              </AccordionTrigger>
               <AccordionContent>
-                Sí, dentro de los 7 días de recibido si el producto está sellado y en perfecto estado. Consulta nuestra política de devoluciones.
+                Sí, dentro de los 7 días de recibido si el producto está sellado
+                y en perfecto estado. Consulta nuestra política de devoluciones.
               </AccordionContent>
             </AccordionItem>
             <AccordionItem value="item-4">
-              <AccordionTrigger>¿Qué m��todos de pago aceptan?</AccordionTrigger>
+              <AccordionTrigger>
+                ¿Qué m��todos de pago aceptan?
+              </AccordionTrigger>
               <AccordionContent>
-                Aceptamos tarjetas de crédito/débito, transferencias y Yape/Plin en Perú.
+                Aceptamos tarjetas de crédito/débito, transferencias y Yape/Plin
+                en Perú.
               </AccordionContent>
             </AccordionItem>
           </Accordion>
@@ -756,7 +919,10 @@ export default function Index() {
                   placeholder="Tu correo electrónico"
                   className="bg-white/10 border-white/20 text-white placeholder:text-white/70"
                 />
-                <Button variant="secondary" className="text-primary font-semibold">
+                <Button
+                  variant="secondary"
+                  className="text-primary font-semibold"
+                >
                   Suscribirse
                 </Button>
               </div>
@@ -853,7 +1019,9 @@ export default function Index() {
                   </div>
                 </div>
                 <div className="space-y-2">
-                  <p className="text-sm font-medium">Síguenos en redes sociales:</p>
+                  <p className="text-sm font-medium">
+                    Síguenos en redes sociales:
+                  </p>
                   <div className="flex space-x-3">
                     <a
                       href="#"
@@ -887,19 +1055,34 @@ export default function Index() {
             <div className="space-y-6">
               <h3 className="text-lg font-semibold">Enlaces Rápidos</h3>
               <div className="space-y-3">
-                <a href="/" className="block text-background/70 hover:text-primary transition-colors">
+                <a
+                  href="/"
+                  className="block text-background/70 hover:text-primary transition-colors"
+                >
                   Inicio
                 </a>
-                <a href="/productos" className="block text-background/70 hover:text-primary transition-colors">
+                <a
+                  href="/productos"
+                  className="block text-background/70 hover:text-primary transition-colors"
+                >
                   Productos
                 </a>
-                <a href="/categorias" className="block text-background/70 hover:text-primary transition-colors">
+                <a
+                  href="/categorias"
+                  className="block text-background/70 hover:text-primary transition-colors"
+                >
                   Categorías
                 </a>
-                <a href="/marcas" className="block text-background/70 hover:text-primary transition-colors">
+                <a
+                  href="/marcas"
+                  className="block text-background/70 hover:text-primary transition-colors"
+                >
                   Marcas
                 </a>
-                <a href="/ofertas" className="block text-background/70 hover:text-primary transition-colors">
+                <a
+                  href="/ofertas"
+                  className="block text-background/70 hover:text-primary transition-colors"
+                >
                   Ofertas
                 </a>
               </div>
@@ -909,19 +1092,34 @@ export default function Index() {
             <div className="space-y-6">
               <h3 className="text-lg font-semibold">Categorías</h3>
               <div className="space-y-3">
-                <a href="/proteinas" className="block text-background/70 hover:text-primary transition-colors">
+                <a
+                  href="/proteinas"
+                  className="block text-background/70 hover:text-primary transition-colors"
+                >
                   Proteínas
                 </a>
-                <a href="/pre-entreno" className="block text-background/70 hover:text-primary transition-colors">
+                <a
+                  href="/pre-entreno"
+                  className="block text-background/70 hover:text-primary transition-colors"
+                >
                   Pre-Entreno
                 </a>
-                <a href="/aminoacidos" className="block text-background/70 hover:text-primary transition-colors">
+                <a
+                  href="/aminoacidos"
+                  className="block text-background/70 hover:text-primary transition-colors"
+                >
                   Aminoácidos
                 </a>
-                <a href="/vitaminas" className="block text-background/70 hover:text-primary transition-colors">
+                <a
+                  href="/vitaminas"
+                  className="block text-background/70 hover:text-primary transition-colors"
+                >
                   Vitaminas
                 </a>
-                <a href="/perdida-peso" className="block text-background/70 hover:text-primary transition-colors">
+                <a
+                  href="/perdida-peso"
+                  className="block text-background/70 hover:text-primary transition-colors"
+                >
                   Pérdida de Peso
                 </a>
               </div>
@@ -931,19 +1129,34 @@ export default function Index() {
             <div className="space-y-6">
               <h3 className="text-lg font-semibold">Soporte</h3>
               <div className="space-y-3">
-                <a href="/contacto" className="block text-background/70 hover:text-primary transition-colors">
+                <a
+                  href="/contacto"
+                  className="block text-background/70 hover:text-primary transition-colors"
+                >
                   Contacto
                 </a>
-                <a href="/ayuda" className="block text-background/70 hover:text-primary transition-colors">
+                <a
+                  href="/ayuda"
+                  className="block text-background/70 hover:text-primary transition-colors"
+                >
                   Centro de Ayuda
                 </a>
-                <a href="/envios" className="block text-background/70 hover:text-primary transition-colors">
+                <a
+                  href="/envios"
+                  className="block text-background/70 hover:text-primary transition-colors"
+                >
                   Envíos
                 </a>
-                <a href="/devoluciones" className="block text-background/70 hover:text-primary transition-colors">
+                <a
+                  href="/devoluciones"
+                  className="block text-background/70 hover:text-primary transition-colors"
+                >
                   Devoluciones
                 </a>
-                <a href="/garantia" className="block text-background/70 hover:text-primary transition-colors">
+                <a
+                  href="/garantia"
+                  className="block text-background/70 hover:text-primary transition-colors"
+                >
                   Garantía
                 </a>
               </div>
@@ -957,10 +1170,16 @@ export default function Index() {
                 © 2024 StyloFitness Supplements. Todos los derechos reservados.
               </p>
               <div className="flex space-x-6 text-sm">
-                <a href="/privacidad" className="text-background/70 hover:text-primary transition-colors">
+                <a
+                  href="/privacidad"
+                  className="text-background/70 hover:text-primary transition-colors"
+                >
                   Política de Privacidad
                 </a>
-                <a href="/terminos" className="text-background/70 hover:text-primary transition-colors">
+                <a
+                  href="/terminos"
+                  className="text-background/70 hover:text-primary transition-colors"
+                >
                   Términos y Condiciones
                 </a>
               </div>
