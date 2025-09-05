@@ -152,7 +152,7 @@ export default function Index() {
         className={`border-b sticky top-0 z-50 transition-all duration-300 ${
           isScrolled
             ? "bg-foreground/90 backdrop-blur-lg shadow-lg border-foreground/20"
-            : "bg-foreground/80 backdrop-blur-md shadow-md border-foreground/10"
+            : "bg-transparent backdrop-blur-0 shadow-none border-transparent"
         }`}
       >
         <div className="container">
