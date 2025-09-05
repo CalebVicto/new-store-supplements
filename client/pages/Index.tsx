@@ -158,7 +158,7 @@ export default function Index() {
         <div className="container">
           <div
             className={`flex items-center justify-between transition-all duration-300 ${
-              isScrolled ? "h-16 lg:h-20" : "h-24 lg:h-28"
+              isScrolled ? "h-12 lg:h-14" : "h-14 lg:h-16"
             }`}
           >
             {/* Logo */}
