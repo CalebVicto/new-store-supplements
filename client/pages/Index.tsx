@@ -75,7 +75,7 @@ export default function Index() {
       name: "Aminoácidos",
       image:
         "https://images.pexels.com/photos/3253501/pexels-photo-3253501.jpeg",
-      description: "Resistencia y recuperaci��n",
+      description: "Resistencia y recuperación",
     },
     {
       name: "Vitaminas",
@@ -615,6 +615,7 @@ export default function Index() {
       {/* Productos del día */}
       <section className="relative py-16 overflow-hidden">
         <div className="absolute inset-0">
+          <img src="https://images.pexels.com/photos/2294403/pexels-photo-2294403.jpeg" alt="Daily products background" className="w-full h-full object-cover opacity-20" />
           <div className="absolute inset-0 bg-gradient-to-t from-foreground/90 via-foreground/85 to-foreground/90" />
         </div>
         <div className="container relative z-10">
