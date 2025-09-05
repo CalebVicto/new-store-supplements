@@ -397,7 +397,7 @@ export default function Index() {
             </div>
             <div className="flex items-center justify-center gap-4">
               <Button size="lg" className="bg-gradient-to-r from-primary to-accent text-white px-7 h-12">Ver Proteínas</Button>
-              <Button size="lg" variant="outline" className="text-white border-white/30 hover:bg-white/10 px-7 h-12">Ver Ofertas</Button>
+              <Button size="lg" className="bg-gradient-to-r from-primary to-accent text-white px-7 h-12 hover:opacity-90">Ver Ofertas</Button>
             </div>
             <div className="text-white/80 text-sm">
               Explora por objetivos:
@@ -593,7 +593,7 @@ export default function Index() {
             <h3 className="text-2xl md:text-3xl font-extrabold text-white">Ofertas de la Semana</h3>
             <p className="text-white/80">Hasta 30% en proteínas y pre-entrenos</p>
           </div>
-          <Button className="bg-white text-foreground hover:bg-white/90">Ver Ofertas</Button>
+          <Button className="bg-gradient-to-r from-primary to-accent text-white hover:opacity-90">Ver Ofertas</Button>
         </div>
       </section>
 
